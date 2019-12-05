@@ -138,7 +138,7 @@ p:nth-child(3) {
   height: 90px;
   border-radius: 90px;
   margin: auto;
-  background: #4caf50;
+  background-image: linear-gradient(270deg, #c2e9fb 0%, #a1c4fd 100%);
   text-align: center;
   line-height: 90px;
   color: #ffffff;

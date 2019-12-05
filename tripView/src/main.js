@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import mandMobile from 'mand-mobile'
 import 'mand-mobile/lib/mand-mobile.css'
+
+
+import './icons'
 Vue.config.productionTip = false
 
 
