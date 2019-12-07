@@ -1,22 +1,52 @@
 <template>
 	<div class="userDetails">
-		<img src="../../assets/user-top1.png" class="user-bg">
+		<!-- <img src="../../assets/user-top1.png" class="user-bg"> -->
+		<div class="user-bg1">
+			
+		</div>
 		<div class="user-top">
 			<img src="../../assets/user.jpg" class="user-top-img">
 			<div class="user-top-account">
 				<p>昵称：吉良吉影</p>
 				<p>帐号：224999999</p>
 			</div>
+			<span class="user-out" @click="loginOut">退出登录</span>
 		</div>
+
 	</div>
 </template>
 <script>
-
+export default {
+  name: 'userDetails',
+  created () {
+      setTimeout(() => {
+          window.L2Dwidget.init({
+          pluginRootPath: 'static/live2dw/',
+          pluginJsPath: 'lib/',
+          pluginModelPath: 'live2d-widget-model-koharu/assets/',
+          tagMode: false,
+          debug: false,
+          model: { jsonPath: '../static/live2dw/live2d-widget-model-koharu/assets/koharu.model.json',"scale":1 },
+          display: { position: 'left', width: 120, height: 240,"hOffset":50,"vOffset":-50 },
+          mobile: { show: true},
+          log: false
+          })
+      }, 1000)
+  },
+  methods: {
+  	loginOut () {
+  		this.$router.push({path: '/login'})
+  	}
+  }
+}
 </script>
 <style lang="scss" scoped>
-.user-bg {
+// .user-bg {
+// 	width: 100%;
+// 	opacity: .7;
+// }
+.user-bg1 {
 	width: 100%;
-	opacity: .7;
 }
 .user-top {
 	// width: 100%;

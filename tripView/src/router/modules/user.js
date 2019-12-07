@@ -13,6 +13,13 @@ const tripUser = [
   	meta: {
   		title: '我的信息'
   	}
+  },{
+  	path: '/login',
+  	name: 'Login',
+  	component: () => import('@/components/user/login'),
+  	meta: {
+  		title: '登录'
+  	}
   }
 ]
 export default tripUser
