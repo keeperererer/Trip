@@ -5,7 +5,15 @@ const tripRoutes = [
     component: () => import('@/components/trip/trip'),
     meta: {
       title: '出行'
-    }
+    },
+    children: [{
+      path: 'map',
+      name: 'Map',
+      component: () => import('@/components/mapLocation/map'),
+      meta: {
+        title: '地图'
+      }
+    }]
   },
   {
     path: '/traffic',

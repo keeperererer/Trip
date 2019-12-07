@@ -14,11 +14,11 @@
           <strong>{{distance}}</strong>
           <p>本月{{TripWay}}{{distance}}公里>></p>
         </div>
-        <div class="trip-start">开始{{TripWay}}</div>
+        <div class="trip-start" @click="tripStart">开始{{TripWay}}</div>
       </div>
     </div>
     <transition name="fademap">
-      <div class="trip-map">
+      <div class="trip-map" v-if="$route.name === 'Map'">
         <router-view/>
       </div>
     </transition>
@@ -57,7 +57,7 @@ export default {
   //     immediate: true
   //   }
   // },
-  // methods: {
+   methods: {
   //   updataDistance (val) {
   //     switch (val) {
   //       case '徒步':
@@ -74,10 +74,10 @@ export default {
   //         break
   //     }
   //   },
-  //   tripStartOnClick () {
-  //     this.$router.push({ name: 'Map', params: { tripType: this.TripWay } })
-  //   }
-  // }
+    tripStart () {
+      this.$router.push({ name: 'Map', params: { tripType: this.TripWay } })
+    }
+   }
 }
 </script>
 <style lang="scss" scoped>
