@@ -19,7 +19,7 @@ var pool = mysql.createPool({
 	user: 'root',
 	password: 'root',
 	port: 3306,
-	database: 'trip'
+	database: 'mytrip'
 });
 router.get('/historyList',function(req,res,next){
 	let tmpId = req.query.userId
