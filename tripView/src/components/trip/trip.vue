@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'trip',
   data () {
@@ -40,23 +40,23 @@ export default {
       }
     }
   },
-  // computed: {
-  //   allDistanceData () {
-  //     return this.userDistance
-  //   },
-  //   ...mapGetters(['userDistance'])
-  // },
-  // watch: {
-  //   '$route' (to) {
-  //     this.updataDistance(this.TripWay)
-  //   },
-  //   TripWay: {
-  //     handler (val) {
-  //       this.updataDistance(val)
-  //     },
-  //     immediate: true
-  //   }
-  // },
+  computed: {
+    allDistanceData () {
+      return this.userDistance
+    },
+    ...mapGetters(['userDistance'])
+  },
+  watch: {
+    '$route' (to) {
+      this.updataDistance(this.TripWay)
+    },
+    TripWay: {
+      handler (val) {
+        this.updataDistance(val)
+      },
+      immediate: true
+    }
+  },
    methods: {
   //   updataDistance (val) {
   //     switch (val) {

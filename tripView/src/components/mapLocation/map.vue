@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import MapLoader from '@/assets/js/AMap.js'
+import MapLoader from '@/assets/ js/AMap.js'
 export default {
   name: 'test',
   data () {

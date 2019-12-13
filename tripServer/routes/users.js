@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 	user: 'root',
 	password: 'root',
 	port: 3306,
-	database: 'mytrip'
+	database: 'trip'
 });
 router.post('/',function (req,res,next){
 	let userName = req.body.userName
