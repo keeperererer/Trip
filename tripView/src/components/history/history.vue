@@ -8,21 +8,21 @@
 	      @end-reached="$_onEndReached"
 	    >
 	      <div
-	        v-for="i in list"
-	        :key="i"
+	        v-for="(item,index) in historyList"
+	        :key="index"
 	        class="scroll-view-list"
 	      >
-	        <div class="scroll-view-item"> 
-				<span>出租车</span>
-				<span>长沙理工大学 -- 五一广场五一广场五一广场五一广场五一广场</span>
-				<span>12km</span>
-				<span>2019/12/01</span>
+	        <div class="scroll-view-item" @click="historyDetailsOnClick(item)"> 
+				<span>{{item.tripType}}</span>
+				<span>{{item.startPlace}}--{{item.endPlace}}</span>
+				<span>{{item.distance}}</span>
+				<span>{{item.date}}</span>
 	        </div>
 	      </div>
 	      <md-scroll-view-more
 	        slot="more"
 	        :is-finished="isFinished"
-	      >
+	      > 
 	      </md-scroll-view-more>
 	    </md-scroll-view>
 	</div>
@@ -40,9 +40,12 @@ export default {
   },
   data() {
     return {
-      list: 14,
+      historyList: [],
       isFinished: false,
     }
+  },
+  mounted () {
+  	this.historyListOnPatch()
   },
   methods: {
     $_onEndReached() {
@@ -51,14 +54,26 @@ export default {
       }
       // async data
       setTimeout(() => {
-        this.list += 5
-        if (this.list >= 20) {
+        this.historyList += 5
+        if (this.historyList >= 20) {
           this.isFinished = true
         }
         this.$refs.scrollView.finishLoadMore()
       }, 1000)
     },
-  },
+    historyDetailsOnClick (item) {
+    	this.$router.push({name: 'Details', params: item})
+    },
+    historyListOnPatch () {
+    	let that = this
+    	this.$http.get('/trip/historyList', {}).then(res => {
+    		that.historyList = res.data.data
+    		that.historyList.forEach((item) => {
+    			item.date = item.date.slice(0,10).split('-').join('/')
+    		})
+    	})
+    }
+  }
 }
 
 </script>
