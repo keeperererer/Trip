@@ -25,7 +25,7 @@
 	        ></md-input-item>
 	      </md-field>
 	      <div class="login-btn">
-	        <span>
+	        <span @click="loginOnClick">
 	          <!-- <svg-icon  class="svg-btn" icon-class="login-btn"/> -->
 	          登录/注册
 	        </span>
@@ -34,6 +34,7 @@
 	</div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import { Toast } from 'mand-mobile'	
 export default {
 	name: 'Login',
@@ -41,11 +42,37 @@ export default {
 		return {
 			userData: null,
 			user: {
-				phone: '18773813454',
+				phone: '15330734121',
 				name: '小吉',
-				password: '1234567'
+				password: '12345'
 			}
 		}
+	},
+	methods: {
+		loginOnClick () {
+			this.loginAjax()
+		},
+		loginAjax () {
+			let params = {
+				userName : this.user.phone,
+				password: this.user.password
+			}
+			this.$http.post('/user',params).then(res => {
+				this.userData = res.data.data
+				let tmpUser = JSON.stringify(this.userData)
+				localStorage.setItem('user',tmpUser)
+				this.setUser(this.userData)
+				this.allDistanceAjax()
+				Toast.succeed(`欢迎回来(●'◡'●),${this.userData.name}`,1500)
+				this.$router.push({path:'/trip'})
+			})
+		},
+		allDistanceAjax () {
+			this.$http.get('/trip/allDistance',{}).then(res => {
+				this.setUserData(res.data.data)
+			})
+		},
+		...mapActions(['setUser','setUserData'])
 	}
 }
 </script>

@@ -58,22 +58,22 @@ export default {
     }
   },
    methods: {
-  //   updataDistance (val) {
-  //     switch (val) {
-  //       case '徒步':
-  //         this.distance = this.allDistanceData.allWalk
-  //         break
-  //       case '跑步':
-  //         this.distance = this.allDistanceData.allRun
-  //         break
-  //       case '骑行':
-  //         this.distance = this.allDistanceData.allCycle
-  //         break
-  //       case '自驾':
-  //         this.distance = this.allDistanceData.allDrive
-  //         break
-  //     }
-  //   },
+    updataDistance (val) {
+      switch (val) {
+        case '徒步':
+          this.distance = this.allDistanceData.allWalk
+          break
+        case '跑步':
+          this.distance = this.allDistanceData.allRun
+          break
+        case '骑行':
+          this.distance = this.allDistanceData.allCycle
+          break
+        case '自驾':
+          this.distance = this.allDistanceData.allDrive
+          break
+      }
+    },
     tripStart () {
       this.$router.push({ name: 'Map', params: { tripType: this.TripWay } })
     }

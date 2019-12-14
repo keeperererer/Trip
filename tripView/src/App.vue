@@ -11,10 +11,30 @@
 
 <script>
 import TripNav from './components/bottomNav/nav'
+import { mapActions } from 'vuex'
 export default {
   name: 'Trip',
   components:{
     TripNav
+  },
+  mounted () {
+    // 验证本地是否已经登录过
+    let tmpUser = localStorage.getItem('user')
+    if (tmpUser) {
+      this.setUser(JSON.parse(tmpUser))
+      // 请求用户里程数据
+      this.allDistanceAjax()
+    } else {
+      this.$router.push({ path: '/login' })
+    }
+  },
+  methods: {
+    allDistanceAjax () {
+      this.$http.get('/trip/allDistance', {}).then(res => {
+        this.setUserData(res.data.data)
+      })
+    },
+    ...mapActions(['setUser','setUserData'])
   }
 }
 </script>
