@@ -8,7 +8,6 @@
 				<div class="user-title-account">
 					<p>昵称：小吉</p>
 					<p>帐号：18773816666</p>
-					<!-- <p>帐号：{{userData.userName}}</p> -->
 				</div>
 			</div>
 			<div class="user-tool">
@@ -51,25 +50,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
-	name: 'User',
-	data () {
-		return {
-			userData: null,
-		}
-	},
-	computed: {
-		...mapGetters(['user'])
-	},
-	mounted () {
-		this.userData = this.user
-	},
-	methods: {
-		toDetailOnClick(item) {
-			this.$router.push({ path: `/${item}`})
-		}
-	}
+	name: 'User'
 }
 </script>
 <style lang="scss" scoped>

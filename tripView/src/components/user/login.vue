@@ -42,13 +42,19 @@ export default {
 		return {
 			userData: null,
 			user: {
-				phone: '15330734121',
+				phone: '18773816666',
 				name: '小吉',
 				password: '12345'
 			}
 		}
 	},
+	mounted (){
+		this.$http.get('/userId');
+	},
 	methods: {
+		// upCheck () {
+		// 	this.$http.get('/');
+		// },
 		loginOnClick () {
 			this.loginAjax()
 		},
@@ -57,7 +63,7 @@ export default {
 				userName : this.user.phone,
 				password: this.user.password
 			}
-			this.$http.post('/user',params).then(res => {
+			this.$http.get('/user',params).then(res => {
 				this.userData = res.data.data
 				let tmpUser = JSON.stringify(this.userData)
 				localStorage.setItem('user',tmpUser)

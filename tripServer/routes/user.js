@@ -79,4 +79,8 @@ router.get('/tripTrend', function (req, res, next) {
       res.json(data);
   });
 })
+
+// router.get('/userId',function (req,res,next) {
+
+// })
 module.exports = router;

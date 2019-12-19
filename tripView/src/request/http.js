@@ -28,6 +28,9 @@ axios.interceptors.response.use(function(response){
 	return Promise.reject(error)
 })
 var request = (options) => {
+	console.log(`debug中`);
+	// console.log(axios.request.data)
+	console.log(options)
 	if(tmpTrip.user) {
 		if(options.body) {
 			options.body.userId = tmpTrip.user.userId

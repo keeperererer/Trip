@@ -1,31 +1,25 @@
 var express = require('express');
-var fs = require("fs");
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
+var mysql = require('mysql');
 
 
-        // res.statusCode = 200;
-        // res.setHeader("Access-Control-Allow-Origin", "*");
-        // res.setHeader('Content-Type', 'application/json');
-        // res.json(data);
-
-function readImage(path,res){
-  console.log(path)
-  fs.readFile(path,'binary',function(err,  file)  {
-      if  (err)  {
-          console.log(err);
-          return;
-      }else{
-          console.log("输出文件");
-          res.writeHead(200,  {'Content-Type':'image/jpeg'});
-          res.write(file,'binary');
-          res.end();
-      }
-  });
-}
-// readImage('/public/images/head.jpeg',res)
+var data = {
+    code: 200,
+    msg: 'success'
+}; 
+var pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    port: 3306,
+    database: 'trip'
 });
-
+router.get('/userId', function (req, res, next) {
+  let tmpName = req.query.userName
+  pool.query(`SELECT userId FROM user where userName=${tmpName}`,function(err,results,fields){
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Content-Type', 'application/json');
+    res.json(results)
+  })
+})
 module.exports = router;
