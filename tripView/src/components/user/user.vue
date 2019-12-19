@@ -50,8 +50,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-	name: 'User'
+  name: 'User',
+  data () {
+    return {
+      userData: null,
+      headImg: '../../assets/img/head.jpeg'
+    }
+  },
+  computed: {
+    ...mapGetters(['user'])
+  },
+  mounted () {
+    this.userData = this.user
+  },
+  methods: {
+    toDetailOnClick (item) {
+      this.$router.push({ path: `/${item}` })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

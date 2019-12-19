@@ -269,8 +269,29 @@ export default {
       },500)
     },
     searchKey(keyword){
-      
-    }
+      this.ToastHide('玩命搜索中(っ °Д °;)っ')
+      let that = this
+      this.trafficMap.plugin('AMap.Autocomplete',function() {
+        var autoOptions = {
+          city: '全国'
+        }
+        var autoComplete = new window.AMap.autoComplete(autoOptions)
+        autoComplete.search(keyword,function(status,result){
+          Toast.hide()
+          console.log(status,result)
+          if(status !== 'complete'){
+            that.searchResult = []
+            return
+          }
+          if(result.info !== 'OK'){
+            that.searchResult = []
+            return
+          }
+          that.searchResult = result.tips
+        })
+      })
+    },
+    //查找路线
   }
 }
 </script>
