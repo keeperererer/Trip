@@ -22,12 +22,17 @@
         <router-view/>
       </div>
     </transition>
+    <trip-nav></trip-nav>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import TripNav from '@/components/bottomNav/nav'
 export default {
   name: 'trip',
+  components:{
+    TripNav
+  },
   data () {
     return {
       TripWay: '徒步', // 出行方式
@@ -82,13 +87,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .trip {
-width: 100%;
-height: 100%;
-position: relative;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  // overflow: hidden;
 }
 .trip-bg {
   width: 100%;
-  height: 100%;
+  height: calc(100vh-100px);
   position: absolute;
   top: 0;
   left: 0;
@@ -96,7 +102,7 @@ position: relative;
 }
 .trip-con {
   width: 100%;
-  height: 100%;
+  height: calc(100vh-100px);
   position: absolute;
   top: 0;
   left: 0;

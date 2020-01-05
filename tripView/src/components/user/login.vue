@@ -68,9 +68,10 @@ export default {
 				let tmpUser = JSON.stringify(this.userData)
 				localStorage.setItem('user',tmpUser)
 				this.setUser(this.userData)
-				this.allDistanceAjax()
+				// this.allDistanceAjax()
 				Toast.succeed(`欢迎回来(●'◡'●),${this.userData.name}`,1500)
 				this.$router.push({path:'/trip'})
+				this.allDistanceAjax()
 			})
 		},
 		allDistanceAjax () {

@@ -22,4 +22,8 @@ router.get('/userId', function (req, res, next) {
     res.json(results)
   })
 })
+
+router.get('/', function (req, res, next) {
+  res.send('hello world')
+})
 module.exports = router;

@@ -1,6 +1,7 @@
 <template>
   <div class="traffic">
     <div id="container"></div>
+    <trip-nav class="tripNav"></trip-nav>
       <div class="search">
         <md-field>
           <md-input-item
@@ -55,7 +56,7 @@
       </div>
       <div v-if="isPanelShow" class="panel-list" :id="panelListShow?'panelList':''">
         <p @click="panelListAuto" class="panel-list-title">
-          <span>请选择合适路线</span>
+          <span>已如下推荐路线</span>
           <svg-icon v-if="!panelListShow" class="up-svg" icon-class="up"/>
           <svg-icon v-else class="up-svg" icon-class="down"/>
           <span class="sure-btn" @click.stop="panelSureOnClick">确定</span>
@@ -102,14 +103,19 @@
           </md-field>
         </div>
       </md-popup>
+      
   </div>
 </template>
 <script>
+import TripNav from '@/components/bottomNav/nav'
 import { Toast } from 'mand-mobile'
 import { getTime } from '@/utils/validate.js'
 import { mapActions } from 'vuex'
 export default {
   name: 'traffic',
+  components:{
+    TripNav
+  },
   data () {
     return {
       spendValue: 0, // 出行花费
@@ -376,7 +382,7 @@ export default {
             buttonOffset: new window.AMap.Pixel(100, 20), // 定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
             zoomToAccuracy: true // 定位成功后是否自动调整地图视野到定位点
           })
-          // 定位插件---------------------------------------------------------
+          // 定位插件
           that.trafficMap.addControl(geolocation)
           geolocation.getCurrentPosition(function (status, result) {
             // Toast.hide()
@@ -557,6 +563,9 @@ export default {
 #panelList {
   transform: translateY(0);
   transition: all 0.3s;
+}
+.tripNav {
+  bottom: 155px !important;
 }
 </style>
 <style lang="scss">

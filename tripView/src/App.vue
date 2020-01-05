@@ -5,18 +5,18 @@
         <router-view/>
       </transition>
     </div>
-    <trip-nav></trip-nav>
+    <!-- <trip-nav></trip-nav> -->
   </div>
 </template>
 
 <script>
-import TripNav from './components/bottomNav/nav'
+// import TripNav from './components/bottomNav/nav'
 import { mapActions } from 'vuex'
 export default {
   name: 'Trip',
-  components:{
-    TripNav
-  },
+  // components:{
+  //   TripNav
+  // },
   mounted () {
     // 验证本地是否已经登录过
     let tmpUser = localStorage.getItem('user')
@@ -43,7 +43,8 @@ export default {
 @import "style/reset.css";
 .box {
   width: 100%;
-  height: calc(100vh-100px);
+  height: 100vh;
+  /*height: calc(100vh-100px);*/
   overflow: auto;
   position: relative;
   color: #555555;

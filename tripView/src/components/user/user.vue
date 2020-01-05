@@ -46,13 +46,18 @@
 				</p>
 			</div>
 		</div>
+		<trip-nav class="tripNav"></trip-nav>
 	</div>
 </template>
 
 <script>
+import TripNav from '@/components/bottomNav/nav'
 import { mapGetters } from 'vuex'
 export default {
   name: 'User',
+  components:{
+    TripNav
+  },
   data () {
     return {
       userData: null,
@@ -168,5 +173,8 @@ export default {
 			}
 		}
     }
+}
+.tripNav {
+	bottom: -824px !important;
 }
 </style> 

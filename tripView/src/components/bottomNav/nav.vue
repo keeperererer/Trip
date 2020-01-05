@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="btm-nav">
     <md-tab-bar v-model="currentTab" :items="items" :has-ink="false" @change="navOnChage">
       <template slot="item" slot-scope="{ item }">
@@ -13,8 +13,18 @@
       </template>
     </md-tab-bar>
   </div>
-</template>
+</template> -->
 
+
+
+<template>
+  <div class="btm-nav">
+    <div class="barTab" v-for="(item,index) in items" :key="index" @click="navOnChange(item)">
+      <svg-icon :icon-class="item.icon" class="barIcon"/>
+      <span class="barName">{{item.label}}</span>
+    </div>
+  </div>
+</template>
 <script>
 import { TabBar, Icon } from 'mand-mobile'
 
@@ -28,15 +38,15 @@ export default {
     return {
       currentTab: 1,
       items: [
-        { name: 1, label: '出行', icon: 'home' },
-        { name: 2, label: '交通', icon: 'location' },
-        { name: 3, label: '历史', icon: 'calendar' },
-        { name: 4, label: '我的', icon: 'authentication' }
+        { name: 1, label: '出行', icon: 'chuxing' },
+        { name: 2, label: '交通', icon: 'chuxing' },
+        { name: 3, label: '历史', icon: 'chuxing' },
+        { name: 4, label: '我的', icon: 'chuxing' }
       ]
     }
   },
   methods: {
-    navOnChage (e) {
+    navOnChange (e) {
       switch (e.name) {
         case 1:
           this.$router.push({ path: '/trip' })
@@ -59,8 +69,27 @@ export default {
 .btm-nav {
   width: 100%;
   height: 100px;
+  position: relative;
+  bottom: -92%;
 }
 .icon {
   text-align: center;
+}
+.barTab {
+  width: 25%;
+  height: 100px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.barIcon {
+  position: absolute;
+  font-size: 50px;
+  top: 20px;
+}
+.barName {
+  position: absolute;
+  top: 67px; 
 }
 </style>
