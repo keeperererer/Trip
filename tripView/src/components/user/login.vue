@@ -5,7 +5,7 @@
 	        <md-input-item
 	          v-model="user.name"
 	          type="name"
-	          ref="name"
+	          ref="nick"
 	          title="昵称"
 	          placeholder="请输入昵称"
 	        ></md-input-item>
@@ -26,7 +26,6 @@
 	      </md-field>
 	      <div class="login-btn">
 	        <span @click="loginOnClick">
-	          <!-- <svg-icon  class="svg-btn" icon-class="login-btn"/> -->
 	          登录/注册
 	        </span>
 	      </div>
@@ -49,31 +48,29 @@ export default {
 		}
 	},
 	mounted (){
-		this.$http.get('/userId');
 	},
 	methods: {
-		// upCheck () {
-		// 	this.$http.get('/');
-		// },
 		loginOnClick () {
 			this.loginAjax()
 		},
-		loginAjax () {
-			let params = {
-				userName : this.user.phone,
-				password: this.user.password
-			}
-			this.$http.get('/user',params).then(res => {
-				this.userData = res.data.data
-				let tmpUser = JSON.stringify(this.userData)
-				localStorage.setItem('user',tmpUser)
-				this.setUser(this.userData)
-				// this.allDistanceAjax()
-				Toast.succeed(`欢迎回来(●'◡'●),${this.userData.name}`,1500)
-				this.$router.push({path:'/trip'})
-				this.allDistanceAjax()
-			})
-		},
+	    loginAjax () {
+	      let params = {
+	        userName: this.user.phone,
+	        passWord: this.user.password
+	      }
+	      this.$http.post('/user', params).then(res => {
+	        this.userData = res.data.data
+	        //将js对象转换为字符串
+	        let tmpUser = JSON.stringify(this.userData)
+	        // 登录信息存到本地
+	        localStorage.setItem('user', tmpUser)
+	        // 存到vuex
+	        this.setUser(this.userData)
+	        this.allDistanceAjax()
+	        Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.userData.name}`, 1500)
+	        this.$router.push({ path: '/trip' })
+	      })
+	    },
 		allDistanceAjax () {
 			this.$http.get('/trip/allDistance',{}).then(res => {
 				this.setUserData(res.data.data)

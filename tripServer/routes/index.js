@@ -14,16 +14,16 @@ var pool = mysql.createPool({
     port: 3306,
     database: 'trip'
 });
-router.get('/userId', function (req, res, next) {
-  let tmpName = req.query.userName
-  pool.query(`SELECT userId FROM user where userName=${tmpName}`,function(err,results,fields){
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader('Content-Type', 'application/json');
-    res.json(results)
-  })
-})
+// router.get('/userId', function (req, res, next) {
+//   let tmpName = req.body.userName
+//   pool.query(`SELECT userId FROM user where userName=${tmpName}`,function(err,results,fields){
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader('Content-Type', 'application/json');
+//     res.json(results)
+//   })
+// })
 
-router.get('/', function (req, res, next) {
-  res.send('hello world')
-})
+// router.get('/', function (req, res, next) {
+//   res.send('hello world')
+// })
 module.exports = router;

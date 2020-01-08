@@ -14,7 +14,7 @@
 import { mapActions } from 'vuex'
 export default {
   name: 'Trip',
-  // components:{
+  // components:{ 
   //   TripNav
   // },
   mounted () {
