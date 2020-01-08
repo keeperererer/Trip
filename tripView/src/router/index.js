@@ -38,11 +38,27 @@ const commonRoutes = [
   }
 ]
 
+
 /** 分模块的路由，合并传入Router */
 let router = new Router({
   // mode: 'history',
   base: process.env.BASE_URL,
   routes: commonRoutes.concat(Trip, User, History)
+})
+
+router.beforeEach((to,form,next)=>{
+  if(to.name != 'UserDetails'){
+    let live2D = document.getElementById('live2d-widget')
+    if(live2D){
+      live2D.style.display = 'none'
+      next()
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
+  
 })
 // 导航守卫，非登录状态先登录
 // router.beforeEach((to, from, next) => {

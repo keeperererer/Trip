@@ -20,7 +20,7 @@ export default {
   name: 'userDetails',
   created () {
       setTimeout(() => {
-          window.L2Dwidget.init({
+        window.L2Dwidget.init({
           pluginRootPath: 'static/live2dw/',
           pluginJsPath: 'lib/',
           pluginModelPath: 'live2d-widget-model-koharu/assets/',
@@ -30,7 +30,7 @@ export default {
           display: { position: 'left', width: 120, height: 240,"hOffset":50,"vOffset":-50 },
           mobile: { show: true},
           log: false
-          })
+        })
       }, 1000)
   },
   methods: {

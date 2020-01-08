@@ -45,6 +45,9 @@ export default {
       }
     }
   },
+  // created(){
+  //   console.log(this.userDistance.allWalk)
+  // },
   computed: {
     allDistanceData () {
       return this.userDistance

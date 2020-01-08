@@ -33,7 +33,7 @@
 	</div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions,mapMutations } from 'vuex'
 import { Toast } from 'mand-mobile'	
 export default {
 	name: 'Login',
@@ -42,7 +42,7 @@ export default {
 			userData: null,
 			user: {
 				phone: '18773816666',
-				name: '小吉',
+				// name: '小吉',
 				password: '12345'
 			}
 		}
@@ -50,6 +50,9 @@ export default {
 	mounted (){
 	},
 	methods: {
+		...mapMutations({
+			SET_USER_DATA:'SET_USER_DATA'
+		}),
 		loginOnClick () {
 			this.loginAjax()
 		},
@@ -66,16 +69,21 @@ export default {
 	        localStorage.setItem('user', tmpUser)
 	        // 存到vuex
 	        this.setUser(this.userData)
-	        this.allDistanceAjax()
-	        Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.userData.name}`, 1500)
-	        this.$router.push({ path: '/trip' })
+
+        	let goInUser = new Promise(reslove =>{
+				this.$http.get('/trip/allDistance',{}).then(res => {
+					let obj = res.data.data
+					this.SET_USER_DATA(obj)
+					reslove()
+					// this.setUserData(res.data.data)
+				})
+        	})
+        	goInUser.then( _=>{
+ 				Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.userData.name}`, 1500)
+	        	this.$router.push({ path: '/trip' })
+        	})			   
 	      })
 	    },
-		allDistanceAjax () {
-			this.$http.get('/trip/allDistance',{}).then(res => {
-				this.setUserData(res.data.data)
-			})
-		},
 		...mapActions(['setUser','setUserData'])
 	}
 }

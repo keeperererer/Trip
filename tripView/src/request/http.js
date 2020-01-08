@@ -19,46 +19,7 @@ axios.interceptors.request.use(
 		return Promise.error(error)
 	}
 )
-
-// axios.interceptors.response.use(function(response){
-// 	return response
-// }, function(error){
-// 	Toast.failed('响应过程出错')
-// 	console.log(error)
-// 	return Promise.reject(error)
-// })
-// var request = (options) => {
-// 	console.log(`debug中`);
-// 	// console.log(axios.request.data)
-// 	console.log(options)
-// 	if(tmpTrip.user) {
-// 		if(options.body) {
-// 			options.body.userId = tmpTrip.user.userId
-// 		}
-// 		if(options.params){
-// 			options.params.userId = tmpTrip.user.userId
-// 		}
-// 	}
-// 	return axios.request({
-// 		url:`http://localhost:3000${options.url}`,
-// 		method: options.method,
-// 		data: options.body,
-// 		params: options.params
-// 	}).then(response => {
-// 		return response
-// 	}, err => {
-// 		Toast.failed(err.message)
-// 		throw err
-// 	}).catch((error) => {
-// 		Toast.failed('请求失败')
-// 		throw error
-// 	})
-// }
-
-var res;
 axios.interceptors.response.use(function(response){
-	// console.log(response)
-	res = response
 	return response
 }, function(error){
 	Toast.failed('响应过程出错')
@@ -66,10 +27,6 @@ axios.interceptors.response.use(function(response){
 	return Promise.reject(error)
 })
 var request = (options,res) => {
-	console.log(`debug中`);
-	// console.log(axios.request.data)
-	console.log(options)
-	console.log(res)
 	if(tmpTrip.user) {
 		if(options.body) {
 			options.body.userId = tmpTrip.user.userId
@@ -81,10 +38,10 @@ var request = (options,res) => {
 	return axios.request({
 		url:`http://localhost:3000${options.url}`,
 		method: options.method,
-		data: options.body,
+		data: stringify(options.body),
 		params: options.params
 	}).then(response => {
-		console.log(response)
+		// console.log(response)
 		return response
 	}, err => {
 		Toast.failed(err.message)
@@ -105,7 +62,7 @@ methods.forEach(method => {
 		if( method === 'get') {
 			return request({url,params,method})
 		}
-		return request({url,body: stringify(params),method})
+		return request({url,body: params,method})
 	}
 })
 
