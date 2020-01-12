@@ -38,10 +38,10 @@ export default {
     return {
       currentTab: 1,
       items: [
-        { name: 1, label: '出行', icon: 'chuxing' },
-        { name: 2, label: '交通', icon: 'chuxing' },
-        { name: 3, label: '历史', icon: 'chuxing' },
-        { name: 4, label: '我的', icon: 'chuxing' }
+        { name: 1, label: '出行', icon: 'footprint' },
+        { name: 2, label: '交通', icon: 'navigation' },
+        { name: 3, label: '历史', icon: 'news' },
+        { name: 4, label: '我的', icon: 'coffeecup' }
       ]
     }
   },

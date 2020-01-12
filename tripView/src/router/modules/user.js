@@ -20,6 +20,38 @@ const tripUser = [
   	meta: {
   		title: '登录'
   	}
+  },
+  {
+    path: '/trend',
+    name: 'Trend',
+    component: () => import('@/components/user/analysis/tripTrend'),
+    meta: {
+      title: '出行趋势' 
+    }
+  },
+  {
+    path: '/allTrip',
+    name: 'allTrip',
+    component: () => import('@/components/user/analysis/allTrip'),
+    meta: {
+      title: '信息总览'
+    }
+  },
+  {
+    path: '/stroke',
+    name: 'stroke',
+    component: () => import('@/components/user/analysis/stroke'),
+    meta: {
+      title: '行程频率'
+    }
+  },
+  {
+    path: '/tripWay',
+    name: 'tripWay',
+    component: () => import('@/components/user/analysis/tripWay'),
+    meta: {
+      title: '出行方式'
+    }
   }
 ]
 export default tripUser

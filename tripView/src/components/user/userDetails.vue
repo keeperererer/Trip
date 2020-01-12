@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div class="userDetails">
 		<!-- <img src="../../assets/user-top1.png" class="user-bg"> -->
 		<div class="user-bg1">
@@ -7,17 +7,32 @@
 		<div class="user-top">
 			<img src="../../assets/user.jpg" class="user-top-img">
 			<div class="user-top-account">
-				<p>昵称：吉良吉影</p>
-				<p>帐号：224999999</p>
+				<p>昵称：{{userData.name}}</p>
+				<p>帐号：{{userData.userName}}</p>
 			</div>
 			<span class="user-out" @click="loginOut">退出登录</span>
 		</div>
-
 	</div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import { Toast } from 'mand-mobile'
 export default {
   name: 'userDetails',
+  data () {
+    return {
+      userData: {
+        name: null,
+        userName: null
+      },
+    }
+  },
+  computed: {
+    ...mapGetters(['user'])
+  },
+  mounted () {
+    this.userData = this.user
+  },
   created () {
       setTimeout(() => {
         window.L2Dwidget.init({
@@ -35,8 +50,12 @@ export default {
   },
   methods: {
   	loginOut () {
+      localStorage.removeItem('user')
+      this.setUser(null)
+      Toast.succeed(`登录状态已清除`,1500)
   		this.$router.push({path: '/login'})
-  	}
+  	},
+    ...mapActions(['setUser'])
   }
 }
 </script>
@@ -82,5 +101,9 @@ export default {
       font-size: 20px;
       margin-top: 15px;
     }
-	}
+}
+.user-out {
+  position: absolute;
+  top: 80%;
+}
 </style>

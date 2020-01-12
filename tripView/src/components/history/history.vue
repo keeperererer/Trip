@@ -208,6 +208,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
+  position: relative;
   &-title {
     display: inline-block;
     box-sizing: border-box;
@@ -231,7 +232,8 @@ export default {
   height: 100%;
 }
 .tripNav {
-  bottom: -120px !important;
+  bottom: 8px !important;
+  position: absolute !important;
 }
 </style>
 <style lang="scss">

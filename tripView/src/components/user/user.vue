@@ -6,26 +6,26 @@
 			<div class="user-title">
 				<img src="../../assets/user.jpg" @click="toDetailOnClick('userDetails')">
 				<div class="user-title-account">
-					<p>昵称：小吉</p>
-					<p>帐号：18773816666</p>
+					<p>昵称：{{userData.name}}</p>
+					<p>帐号：{{userData.userName}}</p>
 				</div>
 			</div>
 			<div class="user-tool">
-				<p>
+				<p @click="toDetailOnClick('allTrip')">
 					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/>
 					<span>信息总览</span>
 				</p>
-				<p>
+				<p @click="toDetailOnClick('trend')">
 					<svg-icon icon-class="合成分析 " class = "tool-svg"/>
-					<span>出行与交通</span>
+					<span>出行趋势</span>
 				</p>
-				<p>
+				<p @click="toDetailOnClick('tripWay')">
 					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/>
-					<span>信息总览</span>
+					<span>出行方式</span>
 				</p>
-				<p>
+				<p @click="toDetailOnClick('stroke')">
 					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/> 
-					<span>信息总览</span>
+					<span>行程频率</span>
 				</p>
 			</div>
 			<div class="user-more">
@@ -60,7 +60,10 @@ export default {
   },
   data () {
     return {
-      userData: null,
+      userData: {
+      	name: null,
+      	userName: null
+      },
       headImg: '../../assets/img/head.jpeg'
     }
   },

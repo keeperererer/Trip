@@ -212,7 +212,7 @@ export default {
     },
     // 点击搜索结果列表
     searchResultListOnClick (item) {
-      console.log(item)
+      // console.log(item)
       if (this.searchState === 'start') {
         this.searchStartData = item
         this.searchStart = item.name
@@ -308,7 +308,7 @@ export default {
         autoComplete.search(keyword, function (status, result) {
           Toast.hide()
           // 搜索成功时，result即是对应的匹配数据
-          console.log(status, result)
+          // console.log(status, result)
           if (status !== 'complete') {
             that.searchResult = []
             return
@@ -323,12 +323,12 @@ export default {
     },
     // 查找路线
     searchDriving (LngLatArr) {
-      console.log('LngLatArr')
-      console.log(LngLatArr)
+      // console.log('LngLatArr')
+      // console.log(LngLatArr)
       this.ToastHide('正在规划路线...')
       let that = this
       let type = that.tripTypeMarriage.slice(5, 15)
-      console.log(type)
+      // console.log(type)
       this.trafficMap.plugin(that.tripTypeMarriage, function () {
         that.driving = new window.AMap[type]({
           map: that.trafficMap,
@@ -346,9 +346,9 @@ export default {
           function (status, result) {
             // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
             Toast.hide()
-            console.log(status, result)
+            // console.log(status, result)
             if (status === 'complete') {
-              console.log('绘制驾车路线完成')
+              // console.log('绘制驾车路线完成')
               that.panelListShow = true
               // 存第一条轨迹的路程
               if (result.plans) {
@@ -358,7 +358,7 @@ export default {
               }
               //   that.isPanelShow = true
             } else {
-              console.log('获取驾车数据失败：' + result)
+              // console.log('获取驾车数据失败：' + result)
               Toast.failed('未检测到匹配路线')
             }
           }
@@ -388,7 +388,7 @@ export default {
             // Toast.hide()
           })
           window.AMap.event.addListener(geolocation, 'error', function (e) {
-            console.log(e)
+            // console.log(e)
           }) // 返回定位出错信息
         }
       )
@@ -403,7 +403,7 @@ export default {
     /** ajax */
     // 保存出行数据
     saveTripDataAjax () {
-      console.log('确认')
+      // console.log('确认')
       let startCode = `${this.searchStartData.location.lng}, ${this.searchStartData.location.lat}`
       let endCode = `${this.searchObjectiveData.location.lng}, ${this.searchObjectiveData.location.lat}`
       let params = {
@@ -419,7 +419,7 @@ export default {
         endCode: endCode,
         mark: this.markText || '未备注'
       }
-      console.log(params)
+      // console.log(params)
       this.$http.get('/trip/addTraffic', params).then(res => {
         if (res.data.code === 200) {
           Toast.succeed('本次出行记录已上传')
