@@ -1,5 +1,6 @@
 <template>
 	<div class="allTrip">
+    <h2>出行总里程</h2>
 		<div id="main" class="echarts-canvas"></div>
 	</div>
 </template>

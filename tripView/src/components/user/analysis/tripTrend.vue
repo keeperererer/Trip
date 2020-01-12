@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="trend">
     <div class="trend-title">
       <h2>出行趋势</h2>

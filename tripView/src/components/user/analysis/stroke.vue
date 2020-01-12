@@ -1,5 +1,6 @@
 <template>
   <div class="echart">
+    <h2>行程频率</h2>
     <div id="main" class="echart-con"></div>
   </div>
 </template>

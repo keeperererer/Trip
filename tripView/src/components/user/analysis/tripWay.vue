@@ -1,5 +1,6 @@
 <template>
   <div class="echart">
+    <h2>出行方式</h2>
     <div id="main" class="echart-con"></div>
   </div>
 </template>
