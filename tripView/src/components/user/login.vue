@@ -5,6 +5,9 @@
     		</li>
     	</ul>
 	    <div class="login-bg">
+        <div class="login-logo">
+          <img src="../../assets/login-logo.svg" alt>
+        </div>
 	      <md-field class="login-input">
 	        <md-input-item
 	          v-model="user.name"
@@ -30,7 +33,7 @@
 	      </md-field>
 	      <div class="login-btn">
 	        <span @click="loginOnClick">
-	          登录/注册
+	          登录 /  注册
 	        </span>
 	      </div>
 	    </div>		
@@ -111,10 +114,10 @@ export default {
   height: 100vh;
   overflow: hidden;
   background-size: 100% 100%;
-  padding: 20px;
   color: #062a49;
   &-input {
   	margin-top: 60px;
+    background-color: rgba(255,255,255,0);
   }
   &-title {
   	margin-top: 250px;
@@ -122,12 +125,29 @@ export default {
   }
   &-btn {
   	position: relative;
-    width: 100%;
+    width: 700px;
     font-size: 30px;
-    margin: 20px auto;
+    margin: 0 auto;
     text-align: center;
-    z-index: 9999999;
+    line-height: 100px;
+    background-color: #6264e2;
+    height: 100px;
+    border-radius: 20px;
+    color: white;
   }
+}
+.login-logo {
+  height: 100px;
+  width: 150px;
+  background-color: #6264e2;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.login-bg {
+  margin-top: 200px;
+}
+img {
+  margin: -40px 0;
 }
 .bg-bubbles {
     position: absolute;
@@ -136,6 +156,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: -1;
     li {
       position: absolute;
       // bottom 的设置是为了营造出气泡从页面底部冒出的效果；

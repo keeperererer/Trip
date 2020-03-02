@@ -143,7 +143,7 @@ export default {
 			.tool-svg {
 				padding-right: 50px;
 				font-size: 60px;
-				color: skyblue;
+				color: pink;
 			}
 			span {
 				font-size: 20px;
@@ -159,7 +159,7 @@ export default {
 		.more-bg{
 				width: 50px;
 				height: 50px;
-				background-color: #2196f3;
+				background-color: #6d1bff;
 				border-radius: 50px;
 				display: inline-block;
 				opacity: .2;

@@ -68,9 +68,10 @@ export default {
 <style lang="scss" scoped>
 .btm-nav {
   width: 100%;
-  height: 100px;
+  height: 105px;
   position: relative;
   bottom: -92%;
+  background-color: white;
 }
 .icon {
   text-align: center;

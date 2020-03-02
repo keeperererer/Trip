@@ -36,7 +36,7 @@ var request = (options,res) => {
 		}
 	}
 	return axios.request({
-		url:`http://localhost:3000${options.url}`,
+		url: options.url.indexOf('http') != -1 ? options.url : `http://localhost:3000${options.url}`,
 		method: options.method,
 		data: stringify(options.body),
 		params: options.params

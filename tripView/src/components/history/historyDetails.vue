@@ -1,8 +1,8 @@
 <template>
   <div class="detail">
     <div id="map"></div>
-    <div v-if="this.data.type === 'trip'" class="detail-con">
-      <p class="detail-con-title">
+    <div v-if="this.data.type === 'trip'" class="detail-con1">
+      <p class="detail-con1-title">
         <span>{{data.tripType}}</span>
         <span>{{data.date}}</span>
       </p>
@@ -10,59 +10,41 @@
         <span>{{data.distance}}</span>
         公里
       </h2>
-      <div class="detail-con-detail">
+      <div class="detail-con1-detail">
         <p>
-          <span>{{data.time}}</span>
-          <br>
-          <span>总计时间</span>
+          <span>总计时间{{data.time}}</span>
         </p>
         <p>
-          <span>{{data.speed}}</span>
-          <br>
-          <span>平均配速(km/h)</span>
+          <span>平均配速{{data.speed}}km/h</span>
         </p>
         <p>
-          <span>{{data.Calorie}}</span>
-          <br>
-          <span>消耗能量(k)</span>
+          <span>消耗能量{{data.Calorie}}k</span>
         </p>
       </div>
-      <p class="detail-con-mark">
+      <p class="detail-con1-mark">
         <span>备注：</span>
         <span>{{data.mark}}</span>
       </p>
     </div>
     <div v-if="this.data.type === 'traffic'" class="detail-con">
-      <p class="detail-con-title">
-        <span>{{data.tripType}}</span>
-        <span>{{data.date}}</span>
-      </p>
-      <div class="detail-con-place">
+      <div class="detail-con-palce">
         <span>{{data.startPlace}}</span>
-        <svg-icon class="place-svg" icon-class="place-right"/>
         <span>{{data.endPlace}}</span>
       </div>
-      <div class="detail-con-detail">
-        <p>
-          <span>{{data.time}}</span>
-          <br>
-          <span>出发时间</span>
-        </p>
-        <p>
-          <span>{{data.price}}元</span>
-          <br>
-          <span>行程花费(RMB)</span>
-        </p>
-        <p>
-          <span>{{data.distance}}</span>
-          <br>
-          <span>里程(km)</span>
-        </p>
+      <div class="detail-con-way">
+        <span>距离{{data.distance}}km</span>
+        <br/>
+        <span class="arrow"></span>
+        <br/>
+        <span>{{data.tripType}}</span>
       </div>
-      <p class="detail-con-mark">
-        <span>备注：</span>
-        <span>{{data.mark}}</span>
-      </p>
+      <div class="detail-con-detail">
+        <span>{{data.date}}</span>
+        <span>{{data.price}}元</span>
+      </div>
+      <div class="detail-con-mask">
+        <span>备注 : {{data.mark}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -197,11 +179,79 @@ export default {
 .detail {
   width: 100%;
   height: 100%;
+  // height: 400px;
   overflow: hidden;
   position: relative;
-  color: #555555;
+  color: #6264e2;
 }
 .detail-con {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: white;
+  font-size: 30px;
+  box-shadow: 2px 13px 8px 1px #6769e363;
+  &-palce {
+    font-size: 35px;
+    font-weight: 600;
+    // padding-top: 10px;
+    span {
+      // text-align: center;
+      width: 250px;
+      word-wrap: break-word;
+      word-break: normal;
+      display: inline-block;
+      position: absolute;
+      top: 60px;
+    }
+    span:nth-child(2) {
+      right: 40px;
+      text-align: right;
+    }
+  }
+  &-way {
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    .arrow {
+      display: inline-block;
+      width: 100px;
+      height: 3px;
+      background-color: #6264e2;
+      margin-bottom: 2px;
+    }
+    span:nth-child(5){
+      padding: 10px;
+    }
+  }
+  &-detail {
+    span {
+      display: inline-block;
+      position: absolute;
+      top: 200px;
+    }
+    span:nth-child(2) {
+      right: 40px;
+    }
+  }
+  &-mask {
+    position: absolute;
+    top: 280px;
+    font-size: 26px;
+  }
+}
+// .detail {
+//   width: 100%;
+//   height: 100%;
+//   overflow: hidden;
+//   position: relative;
+//   color: #555555;
+// }
+.detail-con1 {
   position: absolute;
   top: 0;
   left: 0;
@@ -209,8 +259,8 @@ export default {
   // height: 500px;
   padding: 40px;
   box-sizing: border-box;
-  background: #ffffffe7;
-  box-shadow: 0px 4px 20px #acaaaa;
+  background: white;
+  box-shadow: 0px 4px 20px #6769e363;
   &-title {
     font-size: 30px;
     display: flex;
@@ -219,12 +269,12 @@ export default {
   h2 {
     text-align: center;
     font-style: oblique;
-    font-size: 30px;
+    font-size: 28px;
     vertical-align: bottom;
     margin-top: 20px;
     // margin-top: 40px;
     span:nth-child(1) {
-      font-size: 150px;
+      font-size: 80px;
       font-weight: bold;
     }
   }
@@ -244,23 +294,10 @@ export default {
     justify-content: space-around;
     p {
       text-align: center;
-      span:nth-child(1) {
-        display: inline-block;
-        height: 40px;
-        font-size: 30px;
-        font-weight: bold;
-      }
-      span:nth-child(3) {
-        font-size: 24px;
-        font-style: initial;
-      }
     }
   }
   &-mark {
     margin-top: 40px;
-    span:nth-child(1) {
-      color: #252525;
-    }
   }
 }
 #map {

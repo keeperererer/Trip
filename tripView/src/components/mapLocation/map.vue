@@ -31,23 +31,6 @@
         </md-field>
       </div>
     </md-popup>
-    <!-- 主题 -->
-<!--     <md-popup style="z-index:10000" v-model="mapPopupShow" position="top">
-      <div class="popupText">
-        <md-field>
-          <md-field-item title="地图" solid>
-            <md-radio name="dark" v-model="marriage" label="幻影黑" inline/>
-            <md-radio name="normal" v-model="marriage" label="标准" inline/>
-            <md-radio name="light" v-model="marriage" label="月光银" inline/>
-            <md-radio name="whitesmoke" v-model="marriage" label="远山黛" inline/>
-            <md-radio name="grey" v-model="marriage" label="雅士灰" inline/>
-            <md-radio name="macaron" v-model="marriage" label="马卡龙" inline/>
-            <md-radio name="blue" v-model="marriage" label="靛青蓝" inline/>
-            <md-radio name="darkblue" v-model="marriage" label="极夜蓝" inline/>
-          </md-field-item>
-        </md-field>
-      </div>
-    </md-popup> -->
     <!-- 开始跑步-->
     <transition name="fadeStart">
       <div v-if="stratShow" style="z-index:10008" class="strat-go" :id="isStratGo?'stratGo':''">
@@ -86,7 +69,7 @@
 import { Toast } from 'mand-mobile'
 import { setInterval, clearInterval } from 'timers'
 import { getTime } from '@/utils/validate.js'
-import { mapActions } from 'vuex'
+import { mapActions,mapGetters } from 'vuex'
 export default {
   name: 'mapLocation',
   data () {
@@ -155,7 +138,10 @@ export default {
     // 消耗卡路里
     kcalNow () {
       return (this.distance * 95.2).toFixed(1)
-    }
+    },
+    ...mapGetters([
+        'weatherArr'
+      ])
   },
   watch: {
     marriage (newval) {
@@ -164,10 +150,12 @@ export default {
   },
   mounted () {
     this.tripType = this.$route.params.tripType
+   
     if (!this.tripType) {
       this.$router.push({ path: '/trip' })
     } else {
       this.createTrip()
+      this.toastWeather()
       this.ToastHide()
     }
   },
@@ -282,7 +270,7 @@ export default {
           buttonOffset: new window.AMap.Pixel(100, 20), // 定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
           zoomToAccuracy: true // 定位成功后是否自动调整地图视野到定位点
         })
-        // 定位插件---------------------------------------------------------
+        // 定位插件----
         that.map.addControl(geolocation)
         geolocation.getCurrentPosition(function (status, result) {
           // Toast.hide()
@@ -293,7 +281,7 @@ export default {
           that.localOnComplete
         ) // 返回定位信息
         window.AMap.event.addListener(geolocation, 'error', that.localOnError) // 返回定位出错信息
-        // 罗盘插件---------------------------------------------------------
+        // 罗盘插件-----
         that.map.addControl(new window.AMap.ControlBar())
       })
       this.map.on('complete', function () {
@@ -418,12 +406,19 @@ export default {
         }
       })
     },
-    // allDistanceAjax () {
-    //   this.$http.get('/trip/allDistance', {}).then(res => {
-    //     this.setUserData(res.data.data)
-    //   })
-    // },
-    ...mapActions(['setUserData'])
+    toastWeather(){
+      console.log(this.weatherArr)
+      if(this.weatherArr.length > 0){
+        let weather = this.weatherArr[0]
+        console.log(weather)
+        Toast({
+          content: weather.weather,
+          position: 'top',
+        })
+      }
+    },
+    ...mapActions(['setUserData']),
+
   }
 }
 </script>
@@ -446,7 +441,7 @@ export default {
     width: 200px;
     height: 200px;
     border-radius: 200px;
-    background: #57c595;
+    background: #6264e2;
     position: fixed;
     bottom: 140px;
     left: calc(50%-100px);

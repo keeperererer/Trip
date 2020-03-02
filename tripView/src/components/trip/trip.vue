@@ -1,7 +1,7 @@
 <template>
   <div class="trip">
     <div v-show="$route.name !== 'Map'" class="trip-box">
-      <img class="trip-bg" src="../../assets/bg.jpg" alt>
+      <img class="trip-bg" src="../../assets/trip-bg.jpg" alt>
       <div class="trip-con">
         <md-tabs v-model="TripWay">
           <md-tab-pane name="徒步" label="徒步"></md-tab-pane>
@@ -12,7 +12,7 @@
         <div class="trip-border">
           <p>累计{{TripWay}}</p>
           <strong>{{distance}}</strong>
-          <p>本月{{TripWay}}{{distance}}公里>></p>
+          <p>公里</p>
         </div>
         <div class="trip-start" @click="tripStart">开始{{TripWay}}</div>
       </div>
@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters,mapMutations } from 'vuex'
 import TripNav from '@/components/bottomNav/nav'
 export default {
   name: 'trip',
@@ -66,6 +66,9 @@ export default {
     }
   },
    methods: {
+    ...mapMutations({
+      setWeatherArr:'SET_WEATHER_ARR'
+    }),
     updataDistance (val) {
       switch (val) {
         case '徒步':
@@ -83,6 +86,17 @@ export default {
       }
     },
     tripStart () {
+      console.log('天气11')
+      // let params = {
+      //   city: 110101,
+      //   key: c20caaeac66c17928f1da30a415a29cd,
+      // }
+      this.$http.get('https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=c20caaeac66c17928f1da30a415a29cd',{}).then(res => {
+        let weatherArr = res.data.lives
+        this.setWeatherArr(weatherArr)
+
+      })
+      console.log('天气22')
       this.$router.push({ name: 'Map', params: { tripType: this.TripWay } })
     }
    }
@@ -116,8 +130,11 @@ export default {
   height: 450px;
   border-radius: 450px;
   margin: 100px auto;
-  border: 8px dashed #ffffff;
-  border-bottom: none;
+  // border: 8px dashed #ffffff;
+  border: 8px solid #8bade6;
+  // border: 12px solid pink;
+  box-shadow: 2px 2px 2px 2px pink;
+  // border-bottom: none;
 }
 p:nth-child(1) {
   text-align: center;
@@ -130,16 +147,14 @@ strong {
   display: block;
   text-align: center;
   margin-top: 35px;
-  color: #ffffff;
+  // color: #ffffff;
+  color: #6971f0;
   font-size: 130px;
 }
 p:nth-child(3) {
   text-align: center;
   margin-top: 35px;
-  color: #fff;
   font-size: 28px;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 .trip-start {
@@ -147,7 +162,7 @@ p:nth-child(3) {
   height: 90px;
   border-radius: 90px;
   margin: auto;
-  background-image: linear-gradient(270deg, #c2e9fb 0%, #a1c4fd 100%);
+  background-image: linear-gradient(270deg, #6264e2 0%, #7a7bf1 100%);
   text-align: center;
   line-height: 90px;
   color: #ffffff;
