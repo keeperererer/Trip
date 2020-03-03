@@ -86,17 +86,17 @@ export default {
       }
     },
     tripStart () {
-      console.log('天气11')
+      // console.log('天气11')
       // let params = {
       //   city: 110101,
       //   key: c20caaeac66c17928f1da30a415a29cd,
       // }
-      this.$http.get('https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=c20caaeac66c17928f1da30a415a29cd',{}).then(res => {
+      this.$http.get('https://restapi.amap.com/v3/weather/weatherInfo?city=430103&key=c20caaeac66c17928f1da30a415a29cd',{}).then(res => {
         let weatherArr = res.data.lives
         this.setWeatherArr(weatherArr)
 
       })
-      console.log('天气22')
+      // console.log('天气22')
       this.$router.push({ name: 'Map', params: { tripType: this.TripWay } })
     }
    }

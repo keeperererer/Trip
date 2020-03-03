@@ -17,6 +17,8 @@
         <span>定位</span>
       </p>
     </div> -->
+    <!-- 天气提醒 -->
+    <div class="weather">{{weatherText}}</div>
     <!-- 定位按钮 -->
     <div id="buttonDom" class="buttonDom" @click="loactionOnClick"></div>
     <div class="map-start" @click="startGoOnClick" style="z-index: 10009">{{startBtn}}</div>
@@ -107,7 +109,8 @@ export default {
       ], // 开始定位后设备移动收集的所有经纬坐标
       distance: 0, // 当前移动公里数
       tripType: '徒步', // 出行方式
-      loactionFail: true // 定位成功失败
+      loactionFail: true, // 定位成功失败
+      weatherText: '出行务必要注意安全(●^◡^●)'
     }
   },
   computed: {
@@ -212,12 +215,12 @@ export default {
     /** private */
     // h5实时定位，记录每条定位，绘制轨迹图
     watchMap () {
-      console.log('开始实时定位========')
+      // console.log('开始实时定位========')
       let that = this
       this.watchID = navigator.geolocation.watchPosition(
         function (position) {
           let gps = [position.coords.longitude, position.coords.latitude]
-          console.log('实时定位中---')
+          // console.log('实时定位中---')
           // console.log(gps)
           let p1 =
             that.geolocationData.length > 0
@@ -225,17 +228,17 @@ export default {
               : ''
           let p2 = gps.toString()
           if (p1 === p2) {
-            console.log('定位距离过近')
+            // console.log('定位距离过近')
           } else {
             // 存放轨迹经纬度坐标，经纬度坐标转换
             window.AMap.convertFrom(gps, 'gps', function (status, result) {
               if (result.info === 'ok') {
                 let tmpGps = [result.locations[0].Q, result.locations[0].P]
-                console.log(tmpGps)
+                // console.log(tmpGps)
                 that.geolocationData.push(tmpGps)
                 that.mapLoactionDistance(that.geolocationData)
               } else {
-                console.log('轨迹路径经纬度转换失败！！')
+                // console.log('轨迹路径经纬度转换失败！！')
               }
             })
             // that.geolocationData.push(gps)
@@ -286,7 +289,7 @@ export default {
       })
       this.map.on('complete', function () {
         // 地图图块加载完成后触发
-        console.log('地图加载完成')
+        // console.log('地图加载完成')
       })
     },
     // 移动轨迹图
@@ -335,13 +338,13 @@ export default {
       this.distance = (
         window.AMap.GeometryUtil.distanceOfLine(tmpArr) / 1000
       ).toFixed(2)
-      console.log(this.distance + '公里')
+      // console.log(this.distance + '公里')
     },
     // 监听手动定位成功
     localOnComplete (e) {
       this.loactionFail = true
-      console.log('手动定位成功')
-      console.log(e)
+      // console.log('手动定位成功')
+      // console.log(e)
       this.mapData = e.addressComponent
       this.mapAddress = e.formattedAddress
       Toast.hide()
@@ -349,8 +352,8 @@ export default {
     // 手动定位失败
     localOnError (e) {
       this.loactionFail = false
-      console.log('手动定位出错')
-      console.log(e)
+      // console.log('手动定位出错')
+      // console.log(e)
       Toast.hide()
       Toast.failed('定位失败请检查权限或尝试刷新')
     },
@@ -358,7 +361,7 @@ export default {
     locationOnDelete () {
       let that = this
       navigator.geolocation.clearWatch(that.watchID)
-      console.log('停止实时定位')
+      // console.log('停止实时定位')
     },
     // 时间计时器
     timeSwitch () {
@@ -395,9 +398,9 @@ export default {
         speed: this.speedNow,
         mark: this.markText || '未备注'
       }
-      console.log(params)
+      // console.log(params)
       this.$http.get('/trip/addTrip', params).then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.data.code === 200) {
           Toast.succeed('本次出行记录已上传')
           this.setUserData(res.data.data)
@@ -407,14 +410,20 @@ export default {
       })
     },
     toastWeather(){
-      console.log(this.weatherArr)
+      // let weatherText = this.weatherText
+      // console.log(this.weatherArr)
       if(this.weatherArr.length > 0){
         let weather = this.weatherArr[0]
-        console.log(weather)
-        Toast({
-          content: weather.weather,
-          position: 'top',
-        })
+        // console.log(weather)
+        this.weatherText = weather.weather
+        // console.log(this.weatherText)
+        if(this.weatherText.indexOf('雨') != -1) {
+          this.weatherText = `现在正在下${this.weatherText},出行要记得带伞噢！`
+        } else if(this.weatherText.indexOf('霾') != -1) {
+          this.weatherText = `今天有${this.weatherText},出行要记得戴口罩噢！`
+        } else if(this.weatherText.indexOf('雪') != -1) {
+          this.weatherText = `现在有${this.weatherText},请注意保暖噢！`
+        }
       }
     },
     ...mapActions(['setUserData']),
@@ -589,6 +598,16 @@ export default {
 }
 .fadeStart-enter-active {
   transition: all 0.4s;
+}
+.weather{
+  position: fixed;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  color: white;
+  background-color: #6264e2;
+  height: 50px;
+  line-height: 50px;
 }
 </style>
 <style lang="scss">
