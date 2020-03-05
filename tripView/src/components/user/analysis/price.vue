@@ -96,18 +96,10 @@ export default {
       font-size: 40px;
       text-align: center;
     }
-    p{
-      color: #2f86f6;
-      font-size: 25px;
-      margin-top: 15px;
-      text-align: center;
-    }
   }
-  &-echart{
-    margin-top: 30px;
-  }
-  &-echart-btm{
-    margin-top: 70px;
-  }
+}
+.trend-echart {
+  width: 100%;
+  height: 60%;
 }
 </style>

@@ -1,6 +1,6 @@
  <template>
 	<div class="userDetails">
-		<!-- <img src="../../assets/user-top1.png" class="user-bg"> -->
+		<img src="../../assets/any2.png" class="user-bg">
 		<div class="user-bg1">
 			
 		</div>
@@ -60,10 +60,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-// .user-bg {
-// 	width: 100%;
-// 	opacity: .7;
-// }
+.userDetails {
+  width: 100%;
+  height:100%;
+  overflow: hidden;
+}
+.user-bg {
+	width: 100%;
+  height: 100%;
+	opacity: .7;
+}
 .user-bg1 {
 	width: 100%;
 }
@@ -98,7 +104,7 @@ export default {
       margin-top: 20px;
     }
     p:nth-child(2) {
-      font-size: 20px;
+      font-size: 25px;
       margin-top: 15px;
     }
 }

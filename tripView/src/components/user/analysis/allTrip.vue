@@ -1,5 +1,6 @@
 <template>
 	<div class="allTrip">
+    <!-- <img class="any-bg" src="../../../assets/any1.png" alt> -->
     <h2>出行总里程</h2>
 		<div id="main" class="echarts-canvas"></div>
 	</div>
@@ -53,37 +54,15 @@ export default {
         series: [{
           name: '总里程',
           type: 'bar',
-          // itemStyle: {
-          // color: 'yellow'
-          // },
+          itemStyle: {
+          color: '#f37570'
+          },
           grid: {
             left: '2%',
             right: '4%',
             bottom: '0%',
             top: '0%',
             containLabel: true
-          },
-          itemStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(
-                0, 0, 0, 1,
-                [
-                  { offset: 0, color: '#83bff6' },
-                  { offset: 0.5, color: '#188df0' },
-                  { offset: 1, color: '#188df0' }
-                ]
-              )
-            },
-            emphasis: {
-              color: new echarts.graphic.LinearGradient(
-                0, 0, 0, 1,
-                [
-                  { offset: 0, color: '#2378f7' },
-                  { offset: 0.7, color: '#2378f7' },
-                  { offset: 1, color: '#83bff6' }
-                ]
-              )
-            }
           },
           data: data
         }]
@@ -111,13 +90,24 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.allTrip{
+.allTrip {
   width: 100%;
-  height: 550px;
+  height: 100%;
+  padding: 30px 30px;
   box-sizing: border-box;
+  overflow: hidden;
+}
+// img {
+//   position: absolute;
+//   // z-index: -1;
+//   height: 100%;
+// }
+h2 {
+  font-size: 40px;
+  text-align: center;
 }
 .echarts-canvas{
   width: 100%;
-  height: 100%;
+  height: 60%;
 }
 </style>

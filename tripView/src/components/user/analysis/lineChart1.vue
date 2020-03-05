@@ -82,10 +82,10 @@ export default {
 <style lang="scss" scoped>
 .echart {
   width: 100%;
-  height: 480px;
+  height: 100%;
   &-con {
     width: 100%;
-    height: 480px;
+    height: 60%;
   }
 }
 </style>

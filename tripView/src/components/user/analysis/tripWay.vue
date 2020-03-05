@@ -34,10 +34,10 @@ export default {
     initChart (data) {
       this.chart = echarts.init(document.getElementById('main'))
       this.chart.setOption({
-        title: {
-          text: '出行方式分布图',
-          x: 'center'
-        },
+        // title: {
+        //   text: '出行方式分布图',
+        //   x: 'center'
+        // },
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -105,5 +105,19 @@ export default {
     width: 100%;
     height: 550px;
   }
+}
+.echart {
+  width: 100%;
+  height: 100%;
+  padding: 30px 30px;
+  box-sizing: border-box;
+}
+h2 {
+  font-size: 40px;
+  text-align: center;
+}
+.echart-con {
+  width: 100%;
+  height: 60%;
 }
 </style>

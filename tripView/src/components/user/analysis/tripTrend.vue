@@ -170,7 +170,7 @@ export default {
       text-align: center;
     }
     p{
-      color: #2f86f6;
+      color: #f37570;
       font-size: 25px;
       margin-top: 15px;
       text-align: center;

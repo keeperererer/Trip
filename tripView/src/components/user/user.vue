@@ -20,11 +20,11 @@
 					<span>出行趋势</span>
 				</p>
 				<p @click="toDetailOnClick('tripWay')">
-					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/>
+					<svg-icon icon-class="fenxi1 " class = "tool-svg"/>
 					<span>出行方式</span>
 				</p>
 				<p @click="toDetailOnClick('price')">
-					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/> 
+					<svg-icon icon-class="fenxi2 " class = "tool-svg"/> 
 					<span>交通费用</span>
 				</p>
 			</div>
@@ -117,7 +117,7 @@ export default {
 	          margin-top: 20px;
 	        }
 	        p:nth-child(2) {
-	          font-size: 20px;
+	          font-size: 25px;
 	          margin-top: 15px;
 	        }
       	}
@@ -146,7 +146,7 @@ export default {
 				color: pink;
 			}
 			span {
-				font-size: 20px;
+				font-size: 25px;
 			}
     	}
     }
