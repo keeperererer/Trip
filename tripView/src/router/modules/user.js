@@ -38,11 +38,11 @@ const tripUser = [
     }
   },
   {
-    path: '/stroke',
-    name: 'stroke',
-    component: () => import('@/components/user/analysis/stroke'),
+    path: '/price',
+    name: 'price',
+    component: () => import('@/components/user/analysis/price'),
     meta: {
-      title: '行程频率'
+      title: '交通费用'
     }
   },
   {

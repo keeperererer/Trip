@@ -15,6 +15,7 @@ export default {
     }
   },
   mounted () {
+    // console.log(this.userDistance)
     let tmpDistance = Object.assign({}, this.userDistance)
     delete tmpDistance.userId
     this.$nextTick(() => {
@@ -40,6 +41,11 @@ export default {
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: { show: true }
+          }
         },
         legend: {
           orient: 'vertical',

@@ -23,9 +23,9 @@
 					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/>
 					<span>出行方式</span>
 				</p>
-				<p @click="toDetailOnClick('stroke')">
+				<p @click="toDetailOnClick('price')">
 					<svg-icon icon-class="xiangguanfenxi " class = "tool-svg"/> 
-					<span>行程频率</span>
+					<span>交通费用</span>
 				</p>
 			</div>
 			<div class="user-more">

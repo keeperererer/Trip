@@ -53,7 +53,7 @@ export default {
         },
         yAxis: {
           type: 'value',
-          name: '公里'
+          name: '元'
         },
         series: data.seriesData
       })

@@ -22,6 +22,7 @@ export default {
     this.userData = this.user
     delete this.userDistance.userId
     this.distanceArr = Object.values(this.userDistance)
+    // console.log(this.distanceArr)
     this.$nextTick(() => {
       this.initChart(this.distanceArr)
     })
@@ -32,6 +33,13 @@ export default {
       this.chart.setOption({
         tooltip: {
         },
+        toolbox: {
+          feature: {
+            magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
         title: {
           text: text,
           top: '5%'
@@ -39,7 +47,9 @@ export default {
         xAxis: {
           data: ['徒步', '跑步', '骑行', '自驾', '公交', '出租']
         },
-        yAxis: {},
+        yAxis: {
+          name: '公里'
+        },
         series: [{
           name: '总里程',
           type: 'bar',
@@ -102,12 +112,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .allTrip{
-    width: 100%;
-    height: 550px;
-    box-sizing: border-box;
+  width: 100%;
+  height: 550px;
+  box-sizing: border-box;
 }
 .echarts-canvas{
-        width: 100%;
-        height: 100%;
-    }
+  width: 100%;
+  height: 100%;
+}
 </style>

@@ -221,6 +221,20 @@ router.get('/tripTrend', function (req, res, next) {
   });
 })
 
+router.get('/price',function(req,res,next) {
+  let tmpId = req.query.userId
+  pool.query(`SELECT tripType,price FROM trip_data WHERE userId=${tmpId} and type='traffic'`,function (err,results,fields) {
+    if(err) {
+      data.code = 500
+      data.msg = err
+    };
+    data.data = results
+    res.statusCode = 200;
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Content-Type', 'application/json');
+    res.json(data);
+  })
+})
 // router.get('/userId',function (req,res,next) {
 
 // })
