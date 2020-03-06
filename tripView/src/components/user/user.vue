@@ -37,12 +37,12 @@
 				<span class="more-bg"></span>
 				<p>
 					<svg-icon icon-class="call" class="more-svg" />
-					<span>联系我们</span>
+					<span>加入我们</span>
 				</p>
 				<span class="more-bg"></span>
 				<p>
 					<svg-icon icon-class="call" class="more-svg" />
-					<span>联系我们</span>
+					<span>给点建议</span>
 				</p>
 			</div>
 		</div>

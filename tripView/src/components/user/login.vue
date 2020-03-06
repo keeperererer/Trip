@@ -6,7 +6,8 @@
     	</ul>
 	    <div class="login-bg">
         <div class="login-logo">
-          <img src="../../assets/login-logo.svg" alt>
+          <!-- <img src="../../assets/login-logo.svg" alt> -->
+          <img src="../../assets/login-logo1.svg" alt>
         </div>
 	      <md-field class="login-input">
 	        <md-input-item
@@ -146,8 +147,12 @@ export default {
 .login-bg {
   margin-top: 200px;
 }
+// img {
+//   margin: -40px 0;
+// }
 img {
-  margin: -40px 0;
+  width: 100px;
+  margin-left: 25px;
 }
 .bg-bubbles {
     position: absolute;
@@ -190,7 +195,6 @@ img {
         width: 60px;
         height: 60px;
         animation-duration: 8s;
-        // background-color: rgba(255, 255, 255, 0.3);
         background-color: #c28bd2;
       }
       &:nth-child(5) {
@@ -202,7 +206,6 @@ img {
         width: 120px;
         height: 120px;
         animation-delay: 3s;
-        // background-color: rgba(255, 255, 255, 0.2);
         background-color: #d7df89;
       }
       &:nth-child(7) {
@@ -226,7 +229,6 @@ img {
         height: 30px;
         animation-delay: 2s;
         animation-duration: 12s;
-        // background-color: rgba(255, 255, 255, 0.3);
         background-color: #d7df89;
       }
       &:nth-child(10) {

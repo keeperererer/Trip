@@ -285,7 +285,7 @@ export default {
         ) // 返回定位信息
         window.AMap.event.addListener(geolocation, 'error', that.localOnError) // 返回定位出错信息
         // 罗盘插件-----
-        that.map.addControl(new window.AMap.ControlBar())
+        // that.map.addControl(new window.AMap.ControlBar())
       })
       this.map.on('complete', function () {
         // 地图图块加载完成后触发
@@ -606,8 +606,8 @@ export default {
   width: 100%;
   color: white;
   background-color: #6264e2;
-  height: 50px;
-  line-height: 50px;
+  height: 100px;
+  line-height: 100px;
 }
 </style>
 <style lang="scss">

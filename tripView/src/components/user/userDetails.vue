@@ -52,7 +52,7 @@ export default {
   	loginOut () {
       localStorage.removeItem('user')
       this.setUser(null)
-      Toast.succeed(`登录状态已清除`,1500)
+      Toast.succeed(`ฅ登录状态已清除,欢迎下次使用ฅ`,3000)
   		this.$router.push({path: '/login'})
   	},
     ...mapActions(['setUser'])
@@ -76,7 +76,7 @@ export default {
 .user-top {
 	// width: 100%;
 	width: 590px;
-	height: 300px;
+	height: 350px;
 	position: absolute;
 	top: 150px;
 	left: 80px;
@@ -97,7 +97,7 @@ export default {
 }
 .user-top-account {
     height: 140px;
-    // color: white;
+    color: #111;
     p:nth-child(1) {
       // font-weight: bold;
       font-size: 30px;
@@ -109,7 +109,9 @@ export default {
     }
 }
 .user-out {
+  color: #1a161a;
   position: absolute;
   top: 80%;
+  text-decoration:underline
 }
 </style>

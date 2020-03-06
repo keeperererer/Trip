@@ -39,8 +39,8 @@
         <span>{{data.tripType}}</span>
       </div>
       <div class="detail-con-detail">
-        <span>{{data.date}}</span>
-        <span>{{data.price}}元</span>
+        <span>{{data.date}} {{data.time}}</span>
+        <span>花费：{{data.price}}元</span>
       </div>
       <div class="detail-con-mask">
         <span>备注 : {{data.mark}}</span>
@@ -182,7 +182,7 @@ export default {
   // height: 400px;
   overflow: hidden;
   position: relative;
-  color: #6264e2;
+  color: #111A34;
 }
 .detail-con {
   position: absolute;
@@ -194,7 +194,7 @@ export default {
   box-sizing: border-box;
   background: white;
   font-size: 30px;
-  box-shadow: 2px 13px 8px 1px #6769e363;
+  box-shadow: 2px 13px 8px 1px #7986cb8c;
   &-palce {
     font-size: 35px;
     font-weight: 600;
@@ -221,7 +221,7 @@ export default {
       display: inline-block;
       width: 100px;
       height: 3px;
-      background-color: #6264e2;
+      background-color: #333232d1;
       margin-bottom: 2px;
     }
     span:nth-child(5){
@@ -260,7 +260,7 @@ export default {
   padding: 40px;
   box-sizing: border-box;
   background: white;
-  box-shadow: 0px 4px 20px #6769e363;
+  box-shadow: 0px 4px 20px #333232d1;
   &-title {
     font-size: 30px;
     display: flex;

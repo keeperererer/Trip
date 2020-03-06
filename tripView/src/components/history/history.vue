@@ -41,7 +41,8 @@ export default {
       this.$http.get('/trip/historyList', {}).then(res => {
         that.historyList = res.data.data
         that.historyList.forEach((item) => {
-          item.date = item.date.slice(0, 10).split('-').join('/')
+          item.date = item.date.slice(0, 10)
+          item.time = item.time.slice(0,5)
         })
       })
     }
