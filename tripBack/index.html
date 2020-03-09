@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" href="css/orionicons.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/logo.ico">
+  </head>
+  <body>
+    <!-- navbar-->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a href="index.html" class="navbar-brand font-weight-bold text-uppercase text-base">即刻出行</a>
+        <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+          <li class="nav-item">
+          </li>
+          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="img/user.jpg" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
+            <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">吉尔</strong><small>开发者</small></a>
+              <div class="dropdown-divider"></div><a href="login.html" class="dropdown-item">退出</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="d-flex align-items-stretch">
+    <!-- 侧边栏 -->
+      <div id="sidebar" class="sidebar py-3">
+        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
+        <ul class="sidebar-menu list-unstyled">
+              <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted active"><i class="o-home-1 mr-3 text-gray"></i><span>主页</span></a></li>
+              <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>
+              <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Tables</span></a>
+                <div id="pages" class="collapse">
+                  <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                    <li class="sidebar-list-item"><a href="user_table.html" class="sidebar-link text-muted pl-lg-5">Page one</a></li>
+                    <li class="sidebar-list-item"><a href="user_info_table.html" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
+                    <li class="sidebar-list-item"><a href="total_data_table.html" class="sidebar-link text-muted pl-lg-5">Page two</a></li>
+                    <li class="sidebar-list-item"><a href="trip_data_table.html" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Login</span></a></li>
+        </ul>
+      </div>
+<!-- 侧边栏结束 -->
+      <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+          <!-- 内容第一部分 -->
+          <section class="py-5">
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <div class="dot mr-3 bg-violet"></div>
+                    <div class="text">
+                      <h6 class="mb-0">软件注册人数</h6><span class="text-gray" id="regNum">0人</span>
+                    </div>
+                  </div>
+                  <div class="icon text-white bg-violet"><i class="fas fa-server"></i></div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <div class="dot mr-3 bg-green"></div>
+                    <div class="text">
+                      <h6 class="mb-0">数据库表数</h6><span class="text-gray">4张</span>
+                    </div>
+                  </div>
+                  <div class="icon text-white bg-green"><i class="far fa-clipboard"></i></div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <div class="dot mr-3 bg-blue"></div>
+                    <div class="text">
+                      <h6 class="mb-0">个人出行总次数</h6><span class="text-gray" id="personNum">0次</span>
+                    </div>
+                  </div>
+                  <div class="icon text-white bg-blue"><i class="fa fa-dolly-flatbed"></i></div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <div class="dot mr-3 bg-red"></div>
+                    <div class="text">
+                      <h6 class="mb-0">交通出行总次数</h6><span class="text-gray" id="trafficNum">0次</span>
+                    </div>
+                  </div>
+                  <div class="icon text-white bg-red"><i class="fas fa-receipt"></i></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 内容第一部分结束 -->
+
+          <!-- 内容第二部分 -->
+          <section>
+            <div class="row mb-4">
+              <div class="col-lg-4 mb-4 mb-lg-0 pl-lg-0">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-lg-5">
+                        <h2 class="mb-0 d-flex align-items-center"><span id="allWalk">0</span><span class="dot bg-green d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">总徒步里程</span>
+                        <hr><small class="text-muted">Lorem ipsum dolor sit</small>
+                      </div>
+                      <div class="col-lg-7">
+                        <canvas id="pieChartHome11"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-lg-5">
+                        <h2 class="mb-0 d-flex align-items-center"><span id="allRun">0</span><span class="dot bg-violet d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">总跑步里程</span>
+                        <hr><small class="text-muted">Lorem ipsum dolor sit</small>
+                      </div>
+                      <div class="col-lg-7">
+                        <canvas id="pieChartHome22"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-4 mb-lg-0 pl-lg-0">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-lg-5">
+                        <h2 class="mb-0 d-flex align-items-center"><span id="allCycle">0</span><span class="dot bg-green d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">总骑行里程</span>
+                        <hr><small class="text-muted">Lorem ipsum dolor sit</small>
+                      </div>
+                      <div class="col-lg-7">
+                        <canvas id="pieChartHome111"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-lg-5">
+                        <h2 class="mb-0 d-flex align-items-center"><span id="allDrive">0</span><span class="dot bg-violet d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">总驾车里程</span>
+                        <hr><small class="text-muted">Lorem ipsum dolor sit</small>
+                      </div>
+                      <div class="col-lg-7">
+                        <canvas id="pieChartHome222"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-4 mb-lg-0 pl-lg-0">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-lg-5">
+                        <h2 class="mb-0 d-flex align-items-center"><span id="allBus">0</span><span class="dot bg-green d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">总公共交通里程</span>
+                        <hr><small class="text-muted">Lorem ipsum dolor sit</small>
+                      </div>
+                      <div class="col-lg-7">
+                        <canvas id="pieChartHome1"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-lg-5">
+                        <h2 class="mb-0 d-flex align-items-center"><span id="allTaxi">0</span><span class="dot bg-violet d-inline-block ml-3"></span></h2><span class="text-muted text-uppercase small">总打车里程</span>
+                        <hr><small class="text-muted">Lorem ipsum dolor sit</small>
+                      </div>
+                      <div class="col-lg-7">
+                        <canvas id="pieChartHome2"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 内容第二部分结束 -->
+          <!-- 内容第三部分 -->
+          <section class="py-5">
+            <div class="row text-dark">
+              <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card rounded credit-card bg-hover-gradient-violet">
+                  <div class="content d-flex flex-column justify-content-between p-4">
+                    <h1 class="mb-5"><i class="fa fa-bus"></i></h1>
+                    <div class="d-flex justify-content-between align-items-end pt-3">
+                      <div class="text-uppercase">
+                        <div class="font-weight-bold d-block">公交/地铁</div><small class="text-gray">消费</small>
+                      </div>
+                      <h4 class="mb-0" id="SubwayPrice">$0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card rounded credit-card bg-hover-gradient-blue">
+                  <div class="content d-flex flex-column justify-content-between p-4">
+                    <h1 class="mb-5"><i class="fas fa-bicycle"></i></h1>
+                    <div class="d-flex justify-content-between align-items-end pt-3">
+                      <div class="text-uppercase">
+                        <div class="font-weight-bold d-block">单车/电车</div><small class="text-gray">消费</small>
+                      </div>
+                      <h4 class="mb-0" id="CyclePrice">$0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card rounded credit-card bg-hover-gradient-green">
+                  <div class="content d-flex flex-column justify-content-between p-4">
+                    <h1 class="mb-5"><i class="fas fa-taxi"></i></h1>
+                    <div class="d-flex justify-content-between align-items-end pt-3">
+                      <div class="text-uppercase">
+                        <div class="font-weight-bold d-block">出租车</div><small class="text-gray">消费</small>
+                      </div>
+                      <h4 class="mb-0" id="TaxiPrice">$0</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 第三部分结束 -->
+        </div>
+        <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 text-center text-md-left text-primary">
+                <p class="mb-2 mb-md-0"></p>
+              </div>
+              <div class="col-md-6 text-center text-md-right text-gray-400">
+                <p class="mb-0"></p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="js/js.cookie.min.js"></script>
+    <!-- <script src="js/charts-home.js"></script> -->
+    <script src="js/front.js"></script>
+<script>
+$(function() {
+  $.ajax({
+    url:'http://localhost:3000/back/regNum',
+    type:'GET',
+    success: function(data){
+      var html = data.data.length + '人'
+      $('#regNum').html(html)
+    }
+  })
+  $.ajax({
+    url:'http://localhost:3000/back/personNum',
+    type:'GET',
+    success: function(data){
+      var html = data.data.length + '次'
+      $('#personNum').html(html)
+    }
+  })
+  $.ajax({
+    url:'http://localhost:3000/back/trafficNum',
+    type:'GET',
+    success: function(data){
+      var html = data.data.length + '次'
+      $('#trafficNum').html(html)
+    }
+  })
+  $.ajax({
+    url:'http://localhost:3000/back/allNum',
+    type:'GET',
+    success: function(data){
+      let sumWalk = 0;
+      let sumRun = 0;
+      let sumCycle = 0;
+      let sumDrive = 0;
+      let sumBus = 0;
+      let sumTaxi = 0;
+      for(let i = 0; i < data.length; i++){
+        let num = data[i].allWalk;
+        sumWalk += parseFloat(num); 
+      }
+      let htmlWalk = sumWalk
+      $('#allWalk').html(htmlWalk)
+      // 把数据传给图形
+      dataWalkToChart(sumWalk)
+
+      for(let i = 0; i < data.length; i++){
+        let num = data[i].allRun;
+        sumRun += parseFloat(num); 
+      }
+      let htmlRun = sumRun
+      $('#allRun').html(htmlRun)
+      dataRunToChart(sumRun)
+
+      for(let i = 0; i < data.length; i++){
+        let num = data[i].allCycle;
+        sumCycle += parseFloat(num); 
+      }
+      let htmlCycle = sumCycle
+      $('#allCycle').html(htmlCycle)
+      dataCycleToChart(sumCycle)
+
+      for(let i = 0; i < data.length; i++){
+        let num = data[i].allDrive;
+        sumDrive += parseFloat(num); 
+      }
+      let htmlDrive = sumDrive
+      $('#allDrive').html(htmlDrive)
+      dataDriveToChart(sumDrive)
+
+      for(let i = 0; i < data.length; i++){
+        let num = data[i].allBus;
+        sumBus += parseFloat(num); 
+      }
+      let htmlBus = sumBus
+      $('#allBus').html(htmlBus)
+      dataBusToChart(sumBus)
+
+      for(let i = 0; i < data.length; i++){
+        let num = data[i].allTaxi;
+        sumTaxi += parseFloat(num); 
+      }
+      let htmlTaxi = sumTaxi
+      $('#allTaxi').html(htmlTaxi)
+      dataTaxiToChart(sumTaxi)
+    }
+  })
+  $.ajax({
+    url:'http://localhost:3000/back/price',
+    type:'GET',
+    success: function(data){
+      let SubwayPrice = 0,
+          CyclePrice = 0,
+          TaxiPrice = 0;
+      for(let i = 0; i < data.length; i++) {
+        if(data[i].tripType == '公交/地铁') {
+          SubwayPrice += parseFloat(data[i].price)
+        }
+        if(data[i].tripType == '单车/电车') {
+          CyclePrice += parseFloat(data[i].price)
+        }
+        if(data[i].tripType == '出租车') {
+          TaxiPrice += parseFloat(data[i].price)
+        }
+      }
+      let htmlSprice = '$' + SubwayPrice
+      $('#SubwayPrice').html(htmlSprice)
+
+      let htmlCprice = '$' + CyclePrice
+      $('#CyclePrice').html(htmlCprice)
+
+      let htmlTprice = '$' + TaxiPrice
+      $('#TaxiPrice').html(htmlTprice)
+    }
+  })
+
+// echarts可视化展示
+  var violet = '#DF99CA',
+        green = '#7CF29C',
+        blue = '#4680ff';
+  function dataWalkToChart(data1){
+    var PIECHART = $('#pieChartHome11');
+    var myPieChart = new Chart(PIECHART, {
+        type: 'doughnut',
+        options: {
+            cutoutPercentage: 90,
+            legend: {
+                display: false
+            }
+        },
+        data: {
+            labels: [
+                "First",
+                "Second",
+                "Third"
+            ],
+            datasets: [{
+                data: [data1, data1+100],
+                borderWidth: [0, 0],
+                backgroundColor: [
+                    green,
+                    "#eee",
+                ],
+                hoverBackgroundColor: [
+                    green,
+                    "#eee",
+                ]
+            }]
+        }
+    });
+  }
+  function dataRunToChart(data2){
+    var PIECHART = $('#pieChartHome22');
+    var myPieChart = new Chart(PIECHART, {
+        type: 'doughnut',
+        options: {
+            cutoutPercentage: 90,
+            legend: {
+                display: false
+            }
+        },
+        data: {
+            labels: [
+                "First",
+                "Second"
+            ],
+            datasets: [{
+                data: [data2, data2+100],
+                borderWidth: [0, 0],
+                backgroundColor: [
+                    blue,
+                    "#eee"
+                ],
+                hoverBackgroundColor: [
+                    blue,
+                    "#eee"
+                ]
+            }]
+        }
+    });
+  }
+  function dataCycleToChart(data3) {
+    var PIECHART = $('#pieChartHome111');
+    var myPieChart = new Chart(PIECHART, {
+        type: 'doughnut',
+        options: {
+            cutoutPercentage: 90,
+            legend: {
+                display: false
+            }
+        },
+        data: {
+            labels: [
+                "First",
+                "Second",
+                "Third"
+            ],
+            datasets: [{
+                data: [data3, data3+100],
+                borderWidth: [0, 0],
+                backgroundColor: [
+                    violet,
+                    "#eee",
+                ],
+                hoverBackgroundColor: [
+                    violet,
+                    "#eee",
+                ]
+            }]
+        }
+    });
+  }
+  function dataDriveToChart(data4) {
+    var PIECHART = $('#pieChartHome222');
+    var myPieChart = new Chart(PIECHART, {
+        type: 'doughnut',
+        options: {
+            cutoutPercentage: 90,
+            legend: {
+                display: false
+            }
+        },
+        data: {
+            labels: [
+                "First",
+                "Second"
+            ],
+            datasets: [{
+                data: [data4, data4+100],
+                borderWidth: [0, 0],
+                backgroundColor: [
+                    '#9c27b0',
+                    "#eee"
+                ],
+                hoverBackgroundColor: [
+                    '#9c27b0',
+                    "#eee"
+                ]
+            }]
+        }
+    });
+  }
+  function dataBusToChart(data5) {
+    var PIECHART = $('#pieChartHome1');
+    var myPieChart = new Chart(PIECHART, {
+        type: 'doughnut',
+        options: {
+            cutoutPercentage: 90,
+            legend: {
+                display: false
+            }
+        },
+        data: {
+            labels: [
+                "First",
+                "Second",
+                "Third"
+            ],
+            datasets: [{
+                data: [data5, data5+100],
+                borderWidth: [0, 0],
+                backgroundColor: [
+                    '#ff9800',
+                    "#eee",
+                ],
+                hoverBackgroundColor: [
+                    '#ff9800',
+                    "#eee",
+                ]
+            }]
+        }
+    });
+  }
+  function dataTaxiToChart(data6) {
+    var PIECHART = $('#pieChartHome2');
+    var myPieChart = new Chart(PIECHART, {
+        type: 'doughnut',
+        options: {
+            cutoutPercentage: 90,
+            legend: {
+                display: false
+            }
+        },
+        data: {
+            labels: [
+                "First",
+                "Second"
+            ],
+            datasets: [{
+                data: [data6, data6+100],
+                borderWidth: [0, 0],
+                backgroundColor: [
+                    '#00bcd4',
+                    "#eee"
+                ],
+                hoverBackgroundColor: [
+                    '#00bcd4',
+                    "#eee"
+                ]
+            }]
+        }
+    });
+  }
+})
+</script>
+  </body>
+</html>
