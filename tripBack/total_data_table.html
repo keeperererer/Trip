@@ -22,7 +22,32 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/logo.ico">
-
+    <style>
+      .pop {
+        text-align: center;
+        margin: 0 auto;
+        /*display: none;*/
+        visibility: hidden;
+        position: fixed;
+        top: 20%;
+        left: 38%;
+      }
+      .cancel:hover,.add:hover,.quxiao:hover,.gengxin:hover {
+        color: #2196f3;
+        cursor:pointer;
+      }
+      .addUserInfo{
+        text-align: center;
+        margin: 0 auto;
+        display: none;
+      }
+      .addButton {
+        padding-left: 70%;
+      }
+      .addButton:hover {
+        color: #2196f3;
+      }
+    </style>
   </head>
   <body>
     <!-- navbar-->
@@ -45,34 +70,126 @@
         <ul class="sidebar-menu list-unstyled">
               <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>主页</span></a></li>
               <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>
-              <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Tables</span></a>
+              <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>数据表</span></a>
                 <div id="pages" class="collapse">
                   <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                    <li class="sidebar-list-item"><a href="user_table.html" class="sidebar-link text-muted pl-lg-5">Page one</a></li>
-                    <li class="sidebar-list-item"><a href="user_info_table.html" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
-                    <li class="sidebar-list-item"><a href="total_data_table.html" class="sidebar-link text-muted pl-lg-5">Page two</a></li>
-                    <li class="sidebar-list-item"><a href="trip_data_table.html" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
+                    <li class="sidebar-list-item"><a href="user_table.html" class="sidebar-link text-muted pl-lg-5">user</a></li>
+                    <li class="sidebar-list-item"><a href="user_info_table.html" class="sidebar-link text-muted pl-lg-5">user_info</a></li>
+                    <li class="sidebar-list-item"><a href="total_data_table.html" class="sidebar-link text-muted pl-lg-5">total_data</a></li>
+                    <li class="sidebar-list-item"><a href="trip_data_table.html" class="sidebar-link text-muted pl-lg-5">trip_data</a></li>
                   </ul>
                 </div>
               </li>
-              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Login</span></a></li>
+              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>退出</span></a></li>
         </ul>
       </div>
       <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
-<table class="layui-hide" id="test" lay-filter="test"></table> 
-<script type="text/html" id="toolbarDemo">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-  </div>
-</script>
- 
-<script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
+          <div class="col-lg-4 card addUserInfo">
+           <table class="table card-text">
+              <tr>
+                <td>userId</td>
+                <td><input type="text" class="addUserId"></td>
+              </tr>
+              <tr>
+                <td>allWalk</td>
+                <td><input type="text" class="addAllWalk"></td>
+              </tr>
+              <tr>
+                <td>allRun</td>
+                <td><input type="text" class="addAllRun"></td>
+              </tr>
+              <tr>
+                <td>allCycle</td>
+                <td><input type="text" class="addAllCycle"></td>
+              </tr>
+              <tr>
+                <td>allDrive</td>
+                <td><input type="text" class="addAllDrive"></td>
+              </tr>
+              <tr>
+                <td>allBus</td>
+                <td><input type="text" class="addAllBus"></td>
+              </tr>
+              <tr>
+                <td>allTaxi</td>
+                <td><input type="text" class="addAllTaxi"></td>
+              </tr>
+              <tr>
+                <td class="col-lg-2 cancel">取消</td>
+                <td class="col-lg-2 add">添加</td>
+              </tr>
+            </table>
+          </div>
+          <!-- 内容 -->
+          <section class="py-5">
+            <div class="row">
+              <div class="col-lg-9 mb-4" style="margin: 0 auto;">
+                <div class="card">
+                  <div class="card-header">
+                    <h6 class="text-uppercase mb-0" style="display: inline-block;">TOTAL_DATA Table</h6>
+                    <i class="fas fa-plus addButton"></i>
+                  </div>
+                  <div class="card-body">
+                    <table class="table card-text">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>userId</th>
+                          <th>allWalk</th>
+                          <th>allRun</th>
+                          <th>allCycle</th>
+                          <th>allDrive</th>
+                          <th>allBus</th>
+                          <th>allTaxi</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody id='tab'>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 内容 -->
+          <div class="pop col-lg-5 card">
+            <table class="table card-text">
+              <tr>
+                <td>userId</td>
+                <td><input type="text" class="userId"></td>
+              </tr>
+              <tr>
+                <td>allWalk</td>
+                <td><input type="text" class="allWalk"></td>
+              </tr>
+              <tr>
+                <td>allRun</td>
+                <td><input type="text" class="allRun"></td>
+              </tr>
+              <tr>
+                <td>allCycle</td>
+                <td><input type="text" class="allCycle"></td>
+              </tr>
+              <tr>
+                <td>allDrive</td>
+                <td><input type="text" class="allDrive"></td>
+              </tr>
+              <tr>
+                <td>allBus</td>
+                <td><input type="text" class="allBus"></td>
+              </tr>
+              <tr>
+                <td>allTaxi</td>
+                <td><input type="text" class="allTaxi"></td>
+              </tr>
+              <tr>
+                <td class="col-lg-2 quxiao">取消</td>
+                <td class="col-lg-2 gengxin">更新</td>
+              </tr>
+            </table>
+          </div>
         </div>
         <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
           <div class="container-fluid">
@@ -94,87 +211,169 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="js/js.cookie.min.js"></script>
     <script src="js/front.js"></script>
-<script src="./layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
- 
 <script>
-layui.use('table', function(){
-  var table = layui.table;
-  
-  table.render({
-    elem: '#test'
-    ,url:'/test/table/demo1.json'
-    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-      title: '提示'
-      ,layEvent: 'LAYTABLE_TIPS'
-      ,icon: 'layui-icon-tips'
-    }]
-    ,title: '用户数据表'
-    ,cols: [[
-      {type: 'checkbox', fixed: 'left'}
-      ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
-      ,{field:'username', title:'用户名', width:120, edit: 'text'}
-      ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
-        return '<em>'+ res.email +'</em>'
-      }}
-      ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
-      ,{field:'city', title:'城市', width:100}
-      ,{field:'sign', title:'签名'}
-      ,{field:'experience', title:'积分', width:80, sort: true}
-      ,{field:'ip', title:'IP', width:120}
-      ,{field:'logins', title:'登入次数', width:100, sort: true}
-      ,{field:'joinTime', title:'加入时间', width:120}
-      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
-    ]]
-    ,page: true
-  });
-  
-  //头工具栏事件
-  table.on('toolbar(test)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-      
-      //自定义头工具栏右侧图标 - 提示
-      case 'LAYTABLE_TIPS':
-        layer.alert('这是工具栏右侧自定义的一个图标按钮');
-      break;
-    };
-  });
-  
-  //监听行工具事件
-  table.on('tool(test)', function(obj){
-    var data = obj.data;
-    //console.log(obj)
-    if(obj.event === 'del'){
-      layer.confirm('真的删除行么', function(index){
-        obj.del();
-        layer.close(index);
-      });
-    } else if(obj.event === 'edit'){
-      layer.prompt({
-        formType: 2
-        ,value: data.email
-      }, function(value, index){
-        obj.update({
-          email: value
-        });
-        layer.close(index);
-      });
+$(function(){
+  $.ajax({
+    url:'http://localhost:3000/back/totalData',
+    type:'GET',
+    success: function(data){
+      let s = '';
+      let j = 1;
+      for(let i = 0; i < data.data.length; i++) {
+        s = `<tr id=${i}><th scope='row'>${i}</th>
+        <td>${data.data[i].userId}</td>
+        <td>${data.data[i].allWalk}</td>
+        <td>${data.data[i].allRun}</td>
+        <td>${data.data[i].allCycle}</td>
+        <td>${data.data[i].allDrive}</td>
+        <td>${data.data[i].allBus}</td>
+        <td>${data.data[i].allTaxi}</td>
+        <td><span class='edit'>修改</span> 
+        <span class='del'>删除</span></td></tr>`;
+        $('#tab').append(s);
+      }
+        
     }
-  });
-});
+  })
+  window.onload = function() {
+    // 弹出修改框
+    $('.edit').click(function(){
+      $('.pop').css("visibility","visible").fadeIn(200);
+    })
+    // 取消修改
+    $('.quxiao').click(function(){
+      $('.pop').css("visibility","hidden").fadeOut(200);
+    })
+    // 数据更新
+    $('.gengxin').click(function(){
+      // console.log('更新')
+      let userId1 = $('.userId').val()
+      let allWalk1 = $('.allWalk').val();
+      let allRun1 = $('.allRun').val();
+      let allCycle1 = $('.allCycle').val();
+      let allDrive1 = $('.allDrive').val();
+      let allBus1 = $('.allBus').val();
+      let allTaxi1 = $('.allTaxi').val();
+      let data = {
+        "userId": userId1,
+        "allWalk" : allWalk1,
+        "allRun" : allRun1,
+        "allCycle" : allCycle1,
+        "allDrive" : allDrive1,
+        "allBus" : allBus1,
+        "allTaxi": allTaxi1
+      }
+      // console.log(data)
+
+      $.ajax({
+        type: 'post',
+        url:'http://localhost:3000/back/updateTotalData',
+        data: data,
+        cache:true,
+        async: true,
+        success: function(data){
+          if(data.code == 400){
+            $.ajax({
+              url:'http://localhost:3000/back/totalData',
+              type:'GET',
+              success: function(data){
+                window.location.reload()
+              }
+            })
+            $('.pop').css("visibility","hidden").fadeOut(200);
+          } else {
+            alert(data.message)
+          }
+        }
+      })
+    })
+    // 删除数据
+    $("table").on("click",".del",function(e){
+      var arr = []
+      $(this).parent().siblings().map(function(el){
+        arr.push($(this)[0].innerText)
+      })
+      // console.log($(this).parent().attr('id'))
+      // console.log(arr)
+      let delUserId = arr[1];
+      let delData = {
+        "userId" : delUserId
+      }
+      
+      console.log(delData)
+      $.ajax({
+        type: 'post',
+        url:'http://localhost:3000/back/deleteTotalData',
+        data: delData,
+        cache: true,
+        async: true,
+        success: function(data){
+          if(data.code == 400){
+            $.ajax({
+              url:'http://localhost:3000/back/totalData',
+              type:'GET',
+              success: function(data){
+                window.location.reload()
+              }
+            })            
+          }else {
+            alert(data.message)
+          }
+        }
+      })
+    })
+    // 添加数据
+    $('.addButton').click(function(){
+      $('.addUserInfo').css("display","block").fadeIn(200);
+    })
+        // 取消添加
+    $('.cancel').click(function(){
+      $('.addUserInfo').css("display","block").fadeOut(200);
+    })
+    // 数据更新
+    $('.add').click(function(){
+      let userId = $('.addUserId').val()
+      let allWalk = $('.addAllWalk').val();
+      let allRun = $('.addAllRun').val();
+      let allCycle = $('.addAllCycle').val();
+      let allDrive = $('.addAllDrive').val();
+      let allBus = $('.addAllBus').val();
+      let allTaxi = $('.addAllTaxi').val();
+      let data = {
+        "userId": userId,
+        "allWalk" : allWalk,
+        "allRun" : allRun,
+        "allCycle" : allCycle,
+        "allDrive" : allDrive,
+        "allBus" : allBus,
+        "allTaxi": allTaxi
+      }
+      $.ajax({
+        type: 'post',
+        url:'http://localhost:3000/back/addTotalData',
+        data: data,
+        cache:true,
+        async: true,
+        success: function(data){
+          if(data.code == 400){
+            $.ajax({
+              url:'http://localhost:3000/back/totalData',
+              type:'GET',
+              success: function(data){
+                window.location.reload()
+              }
+            })
+            $('.addUserInfo').css("display","block").fadeOut(200);
+          } else {
+            alert(data.message)
+          }
+        }
+      })
+    })
+
+  }
+})
 </script>
   </body>
 </html>

@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/logo.ico">
-
+    <style>
+    </style>
   </head>
   <body>
     <!-- navbar-->
@@ -45,34 +46,56 @@
         <ul class="sidebar-menu list-unstyled">
               <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>主页</span></a></li>
               <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>Charts</span></a></li>
-              <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Tables</span></a>
+              <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>数据表</span></a>
                 <div id="pages" class="collapse">
                   <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                    <li class="sidebar-list-item"><a href="user_table.html" class="sidebar-link text-muted pl-lg-5">Page one</a></li>
-                    <li class="sidebar-list-item"><a href="user_info_table.html" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
-                    <li class="sidebar-list-item"><a href="total_data_table.html" class="sidebar-link text-muted pl-lg-5">Page two</a></li>
-                    <li class="sidebar-list-item"><a href="trip_data_table.html" class="sidebar-link text-muted pl-lg-5">Page three</a></li>
+                    <li class="sidebar-list-item"><a href="user_table.html" class="sidebar-link text-muted pl-lg-5">user</a></li>
+                    <li class="sidebar-list-item"><a href="user_info_table.html" class="sidebar-link text-muted pl-lg-5">user_info</a></li>
+                    <li class="sidebar-list-item"><a href="total_data_table.html" class="sidebar-link text-muted pl-lg-5">total_data</a></li>
+                    <li class="sidebar-list-item"><a href="trip_data_table.html" class="sidebar-link text-muted pl-lg-5">trip_data</a></li>
                   </ul>
                 </div>
               </li>
-              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>Login</span></a></li>
+              <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>退出</span></a></li>
         </ul>
       </div>
       <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
-<table class="layui-hide" id="test" lay-filter="test"></table> 
-<script type="text/html" id="toolbarDemo">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-  </div>
-</script>
- 
-<script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
+          <!-- 内容 -->
+          <section class="py-5">
+            <div class="row">
+              <div class="col-lg-12 mb-4" style="margin: 0 auto;">
+                <div class="card">
+                  <div class="card-header">
+                    <h6 class="text-uppercase mb-0" style="display: inline-block;">TRIP_DATA Table</h6>
+                    <!-- <i class="fas fa-plus addButton"></i> -->
+                  </div>
+                  <div class="card-body">
+                    <table class="table card-text">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>userId</th>
+                          <th>type</th>
+                          <th>tripType</th>
+                          <th>distance</th>
+                          <th>date</th>
+                          <th>time</th>
+                          <th>price</th>
+                          <th>startPlace</th>
+                          <th>endPlace</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody id='tab'>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 内容 -->
         </div>
         <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
           <div class="container-fluid">
@@ -94,87 +117,33 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="js/js.cookie.min.js"></script>
     <script src="js/front.js"></script>
-<script src="./layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
- 
 <script>
-layui.use('table', function(){
-  var table = layui.table;
-  
-  table.render({
-    elem: '#test'
-    ,url:'/test/table/demo1.json'
-    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-      title: '提示'
-      ,layEvent: 'LAYTABLE_TIPS'
-      ,icon: 'layui-icon-tips'
-    }]
-    ,title: '用户数据表'
-    ,cols: [[
-      {type: 'checkbox', fixed: 'left'}
-      ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
-      ,{field:'username', title:'用户名', width:120, edit: 'text'}
-      ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
-        return '<em>'+ res.email +'</em>'
-      }}
-      ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
-      ,{field:'city', title:'城市', width:100}
-      ,{field:'sign', title:'签名'}
-      ,{field:'experience', title:'积分', width:80, sort: true}
-      ,{field:'ip', title:'IP', width:120}
-      ,{field:'logins', title:'登入次数', width:100, sort: true}
-      ,{field:'joinTime', title:'加入时间', width:120}
-      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
-    ]]
-    ,page: true
-  });
-  
-  //头工具栏事件
-  table.on('toolbar(test)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-      
-      //自定义头工具栏右侧图标 - 提示
-      case 'LAYTABLE_TIPS':
-        layer.alert('这是工具栏右侧自定义的一个图标按钮');
-      break;
-    };
-  });
-  
-  //监听行工具事件
-  table.on('tool(test)', function(obj){
-    var data = obj.data;
-    //console.log(obj)
-    if(obj.event === 'del'){
-      layer.confirm('真的删除行么', function(index){
-        obj.del();
-        layer.close(index);
-      });
-    } else if(obj.event === 'edit'){
-      layer.prompt({
-        formType: 2
-        ,value: data.email
-      }, function(value, index){
-        obj.update({
-          email: value
-        });
-        layer.close(index);
-      });
+$(function(){
+  $.ajax({
+    url:'http://localhost:3000/back/tripData',
+    type:'GET',
+    success: function(data){
+      let s = '';
+      let j = 1;
+      for(let i = 0; i < data.data.length; i++) {
+        s = `<tr id=${i}><th scope='row'>${i}</th>
+        <td>${data.data[i].userId}</td>
+        <td>${data.data[i].type}</td>
+        <td>${data.data[i].tripType}</td>
+        <td>${data.data[i].distance}</td>
+        <td>${data.data[i].date.slice(0,10)}</td>
+        <td>${data.data[i].time.slice(0,5)}</td>
+        <td>${data.data[i].price}</td>
+        <td>${data.data[i].startPlace}</td>
+        <td>${data.data[i].endPlace}</td>
+        <td>锁定</td></tr>`;
+        $('#tab').append(s);
+      }
+        
     }
-  });
-});
+  })
+})
 </script>
   </body>
 </html>
