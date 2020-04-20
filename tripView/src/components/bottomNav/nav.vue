@@ -16,7 +16,6 @@
 </template> -->
 
 
-
 <template>
   <div class="btm-nav">
     <div class="barTab" v-for="(item,index) in items" :key="index" @click="navOnChange(item)">

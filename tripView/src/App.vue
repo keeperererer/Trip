@@ -20,7 +20,9 @@ export default {
   mounted () {
     // 验证本地是否已经登录过
     let tmpUser = localStorage.getItem('user')
-    if (tmpUser) {
+  
+    
+    if (tmpUser && tmpUser != null && tmpUser != undefined) {
       this.setUser(JSON.parse(tmpUser))
       // 请求用户里程数据
       this.allDistanceAjax()

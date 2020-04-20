@@ -9,7 +9,7 @@
       </md-field>
     </div>
     <div v-show="$route.name === 'Details'" class="trip-map">
-      <router-view/>
+      <router-view/> 
     </div>
     <trip-nav class="tripNav"></trip-nav>
   </div>
