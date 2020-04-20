@@ -1,6 +1,6 @@
 <template>
   <div class="userDetails">
-    <img src="../../assets/any2.png" class="user-bg">
+    <!-- <img src="../../assets/any2.png" class="user-bg"> -->
     <div class="user-bg1"></div>
     <div class="user-top">
       <img src="../../assets/user.jpg" class="user-top-img" />
