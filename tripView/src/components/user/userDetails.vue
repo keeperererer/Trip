@@ -1,9 +1,12 @@
 <template>
   <div class="userDetails">
-    <!-- <img src="../../assets/any2.png" class="user-bg"> -->
+    <img src="../../assets/any2.png" class="user-bg" />
     <div class="user-bg1"></div>
     <div class="user-top">
-      <img src="../../assets/user.jpg" class="user-top-img" />
+      <div class="loadAvatar" data-text="上传头像" @click="loadAvatar">
+        <input type="file" accept="image/*" class="loadInput" />
+        <img :src="avatar" class="user-top-img" />
+      </div>
       <div class="user-top-account">
         <p>昵称：{{ userData.name }}</p>
         <p>帐号：{{ userData.userName }}</p>
@@ -19,7 +22,9 @@ export default {
   name: "userDetails",
   data() {
     return {
+      avatar: "",
       userData: {
+        userId: null,
         name: null,
         userName: null
       }
@@ -30,6 +35,9 @@ export default {
   },
   mounted() {
     this.userData = this.user;
+    console.log(this.userData);
+    this.getAvatar();
+    // this.loadAvatar();
   },
   created() {
     setTimeout(() => {
@@ -57,6 +65,44 @@ export default {
     }, 1000);
   },
   methods: {
+    getAvatar() {
+      let that = this;
+      this.$http
+        .get("/user/getAvatar", { userId: that.user.userId })
+        .then(res => {
+          // console.log(res.data.data[0].avatar);
+          that.avatar = res.data.data[0].avatar;
+          // console.log(that.avatar);
+        });
+    },
+    loadAvatar() {
+      let that = this;
+      const input = document.querySelector("input[type=file]");
+      const img = document.querySelector(".user-top-img");
+      input.addEventListener("change", ev => {
+        // console.dir(input);
+        const file = input.files[0];
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        console.log(fileReader.readyState);
+        fileReader.onload = () => {
+          // img.src = fileReader.result;
+          // console.log(fileReader.result);
+          this.$http
+            .post("/user/upAvatar", {
+              userId: that.userData.userId,
+              avatar: fileReader.result
+            })
+            .then(res => {
+              console.log(res);
+              if (res.data == "success") {
+                that.avatar = fileReader.result;
+              }
+            });
+        };
+      });
+      this.getAvatar();
+    },
     loginOut() {
       localStorage.removeItem("user");
       this.setUser(null);
@@ -69,6 +115,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .userDetails {
+  position: fixed;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -83,13 +130,10 @@ export default {
   width: 100%;
 }
 .user-top {
-  width: 100%;
+  // width: 100%;
   position: absolute;
   top: 100px;
   left: 35%;
-}
-.user-top-img {
-  border-radius: 140px;
 }
 .user-top-account {
   height: 140px;
@@ -109,5 +153,50 @@ export default {
   color: #1a161a;
   position: absolute;
   text-decoration: underline;
+}
+.loadAvatar {
+  // width: 80px;
+  // height: 80px;
+  margin-bottom: 10px;
+  margin-top: 85px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  // left: -240px;
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    content: attr(data-text);
+    // transform: translateY(-100%);
+    color: whitesmoke;
+    font-size: 0.8rem;
+  }
+  .user-top-img {
+    width: 250px;
+    border-radius: 140px;
+  }
+}
+.loadInput {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  width: 3.5rem;
+  clear: both;
+  display: block;
+  margin: auto;
 }
 </style>

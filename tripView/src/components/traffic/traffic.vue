@@ -284,6 +284,10 @@ export default {
         center: [116.397428, 39.90923],
         zoom: 13 // 地图显示的缩放级别
       });
+      var trafficLayer = new window.AMap.TileLayer.Traffic({
+        zIndex: 10
+      });
+      trafficLayer.setMap(this.trafficMap);
     },
     /** private */
     // 请求搜索关键字

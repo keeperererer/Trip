@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="login">
     <ul class="bg-bubbles">
       <li v-for="(item, index) in bubbles" :key="index"></li>
@@ -69,6 +69,7 @@ export default {
     },
     loginAjax() {
       let params = {
+        name: this.user.name,
         userName: this.user.phone,
         passWord: this.user.password
       };
