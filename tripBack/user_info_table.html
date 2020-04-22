@@ -15,10 +15,10 @@
       crossorigin="anonymous"
     />
     <!-- Google fonts - Popppins for copy-->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Poppins:300,400,800"
-    />
+    /> -->
     <!-- orion icons-->
     <link rel="stylesheet" href="css/orionicons.css" />
     <!-- theme stylesheet-->
@@ -130,13 +130,13 @@
               <ul
                 class="sidebar-menu list-unstyled border-left border-primary border-thick"
               >
-                <li class="sidebar-list-item">
+                <!-- <li class="sidebar-list-item">
                   <a
                     href="user_table.html"
                     class="sidebar-link text-muted pl-lg-5"
                     >user</a
                   >
-                </li>
+                </li> -->
                 <li class="sidebar-list-item">
                   <a
                     href="user_info_table.html"
@@ -185,6 +185,10 @@
                 <td><input type="text" class="addUserName" /></td>
               </tr>
               <tr>
+                <td>passWord</td>
+                <td><input type="text" class="addPassWord" /></td>
+              </tr>
+              <tr>
                 <td class="col-lg-2 cancel">取消</td>
                 <td class="col-lg-2 add">添加</td>
               </tr>
@@ -212,6 +216,7 @@
                           <th>name</th>
                           <th>userId</th>
                           <th>userName</th>
+                          <th>passWord</th>
                           <th>操作</th>
                         </tr>
                       </thead>
@@ -236,6 +241,10 @@
               <tr>
                 <td>userName</td>
                 <td><input type="text" class="userName" /></td>
+              </tr>
+              <tr>
+                <td>passWord</td>
+                <td><input type="text" class="passWord" /></td>
               </tr>
               <tr>
                 <td class="col-lg-2 quxiao">取消</td>
@@ -276,7 +285,7 @@
             let s = ''
             let j = 1
             for (let i = 0; i < data.data.length; i++) {
-              s = `<tr id=${i}><th scope='row'>${i}</th><td>${data.data[i].name}</td><td>${data.data[i].userId}</td><td>${data.data[i].userName}</td><td><span class='edit'>修改</span> <span class='del'>删除</span></td></tr>`
+              s = `<tr id=${i}><th scope='row'>${i}</th><td>${data.data[i].name}</td><td>${data.data[i].userId}</td><td>${data.data[i].userName}</td><td>${data.data[i].passWord}</td><td><span class='edit'>修改</span> <span class='del'>删除</span></td></tr>`
               $('#tab').append(s)
             }
           },
@@ -295,11 +304,12 @@
             let userId1 = $('.userId').val()
             let name1 = $('.name').val()
             let userName1 = $('.userName').val()
-
+            let passWord1 = $('.passWord').val()
             let data = {
               userId: userId1,
               name: name1,
               userName: userName1,
+              passWord: passWord1,
             }
 
             $.ajax({
@@ -375,11 +385,12 @@
             let addName = $('.addName').val()
             let addUserId = $('.addUserId').val()
             let addUserName = $('.addUserName').val()
-
+            let addPassWord = $('.addPassWord').val()
             let data = {
               name: addName,
               userId: addUserId,
               userName: addUserName,
+              passWord: addPassWord,
             }
             $.ajax({
               type: 'post',

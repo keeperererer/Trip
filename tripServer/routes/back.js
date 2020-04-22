@@ -112,10 +112,11 @@ router.get('/userInfo', function (req, res, next) {
 router.post('/updateUserInfo', function (req, res, next) {
   let name = req.body.name,
     userName = req.body.userName,
-    userId = req.body.userId
+    userId = req.body.userId,
+    passWord = req.body.passWord
   // res.json(name)
   pool.query(
-    `UPDATE user_info SET name="${name}",userName="${userName}" WHERE userId="${userId}"`,
+    `UPDATE user_info SET name="${name}",userName="${userName}",passWord="${passWord}" WHERE userId="${userId}"`,
     function (err, results, fields) {
       if (err) {
         data.code = 500
@@ -150,10 +151,11 @@ router.post('/deleteUserInfo', function (req, res, next) {
 router.post('/addUserInfo', function (req, res, next) {
   let name = req.body.name,
     userName = req.body.userName,
-    userId = req.body.userId
+    userId = req.body.userId,
+    passWord = req.body.passWord
   // res.json(name)
   pool.query(
-    `INSERT INTO user_info SET name="${name}",userId="${userId}",userName="${userName}"`,
+    `INSERT INTO user_info SET name="${name}",userId="${userId}",userName="${userName}",passWord="${passWord}"`,
     function (err, results, fields) {
       if (err) {
         data.code = 500
