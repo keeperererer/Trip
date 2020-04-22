@@ -1,6 +1,6 @@
 <template>
   <div class="userDetails">
-    <img src="../../assets/any2.png" class="user-bg" />
+    <img src="../../assets/any3.png" class="user-bg" />
     <div class="user-bg1"></div>
     <div class="user-top">
       <div class="loadAvatar" data-text="上传头像" @click="loadAvatar">

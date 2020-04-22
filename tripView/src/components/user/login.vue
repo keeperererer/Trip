@@ -5,7 +5,6 @@
     </ul>
     <div class="login-bg">
       <div class="login-logo">
-        <!-- <img src="../../assets/login-logo.svg" alt> -->
         <img src="../../assets/login-logo1.svg" alt />
       </div>
       <md-field class="login-input">
@@ -77,8 +76,10 @@ export default {
         this.userData = res.data.data;
         //将js对象转换为字符串
         let tmpUser = JSON.stringify(this.userData);
+        let token = res.data.token;
         // 登录信息存到本地
         localStorage.setItem("user", tmpUser);
+        localStorage.setItem("tripToken", token);
         // 存到vuex
         this.setUser(this.userData);
 
@@ -97,8 +98,6 @@ export default {
             Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.user.name}`, 3000);
             this.$router.push({ path: "/trip" });
           }, 1000);
-          // Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.userData.name}`, 3000)
-          // this.$router.push({ path: '/trip' })
         });
       });
     },

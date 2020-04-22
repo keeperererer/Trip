@@ -1,7 +1,8 @@
 var express = require('express')
 var router = express.Router()
 var mysql = require('mysql')
-
+const jwt = require('jsonwebtoken')
+const config = require('../config')
 var data = {
   code: 200,
   msg: 'success',
@@ -35,12 +36,20 @@ router.post('/', function (req, res, next) {
     // }
     if (results && results.length) {
       if (results[0].passWord === passWord) {
+        const token = jwt.sign(
+          {
+            id: results[0].userId,
+            userName: results[0].userName,
+          },
+          config.jwtSecret
+        )
         data.code = 200
         data.msg = 'sucess'
         data.data = results[0]
         res.statusCode = 200
         res.setHeader('Access-Control-Allow-Origin', '*')
         res.setHeader('Content-Type', 'application/json')
+        data.token = token
         res.json(data)
       } else {
         data.code = 400
