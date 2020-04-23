@@ -1,22 +1,6 @@
 <template>
   <div class="map">
     <div id="map"></div>
-    <!--     <div class="map-tool">
-      <p @click="popupShowOnClick">
-        <svg-icon icon-class="city"/>
-        <span v-if="mapData.district">{{mapData.district}}</span>
-        <span v-else-if="mapData.city">{{mapData.city}}</span>
-        <span v-else>未知城市</span>
-      </p>
-      <p @click="mapPopupShowOnClick">
-        <svg-icon icon-class="map"/>
-        <span>地图</span>
-      </p>
-      <p>
-        <svg-icon icon-class="loaction"/>
-        <span>定位</span>
-      </p>
-    </div> -->
     <!-- 天气提醒 -->
     <div class="weather">{{ weatherText }}</div>
     <!-- 定位按钮 -->
@@ -102,23 +86,7 @@ export default {
       timer: [0, 0, 0], // 时间计时器的时分秒
       timeAll: 0,
       markText: "", // 备注
-      geolocationData: [
-        // [126.567402, 43.923187],
-        // [126.567402, 43.923129],
-        // [126.56744, 43.923098],
-        // [126.56759, 43.923024],
-        // [126.567794, 43.923024],
-        // [126.567928, 43.922912],
-        // [126.568169, 43.922819],
-        // [126.568486, 43.922723],
-        // [126.568598, 43.922881],
-        // [126.568727, 43.923074],
-        // [126.56884, 43.92319],
-        // [126.569274, 43.923055],
-        // [126.569564, 43.92348],
-        // [126.569859, 43.923944],
-        // [126.569172, 43.924199]
-      ], // 开始定位后设备移动收集的所有经纬坐标
+      geolocationData: [], // 开始定位后设备移动收集的所有经纬坐标
       distance: 0, // 当前移动公里数
       tripType: "徒步", // 出行方式
       loactionFail: true, // 定位成功失败

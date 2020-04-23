@@ -4,7 +4,11 @@
     <div class="user-bg"></div>
     <div class="user-content">
       <div class="user-title">
-        <img :src="avatar" @click="toDetailOnClick('userDetails')" />
+        <img
+          :src="avatar"
+          @click="toDetailOnClick('userDetails')"
+          class="avatar"
+        />
         <div class="user-title-account">
           <p>昵称：{{ userData.name }}</p>
           <p>帐号：{{ userData.userName }}</p>
@@ -12,10 +16,26 @@
       </div>
       <div class="user-tool">
         <p @click="toDetailOnClick('allTrip')">
-          <svg-icon icon-class="xiangguanfenxi " class="tool-svg" />
+          <img src="../../assets/相关分析.png" alt="" class="icon-img" />
           <span>信息总览</span>
         </p>
         <p @click="toDetailOnClick('trend')">
+          <img src="../../assets/合成分析.png" alt="" class="icon-img" />
+          <span>出行趋势</span>
+        </p>
+        <p @click="toDetailOnClick('tripWay')">
+          <img src="../../assets/分析.png" alt="" class="icon-img" />
+          <span>出行方式</span>
+        </p>
+        <p @click="toDetailOnClick('price')">
+          <img src="../../assets/分析1.png" alt="" class="icon-img" />
+          <span>交通费用</span>
+        </p>
+        <!-- <p @click="toDetailOnClick('allTrip')">
+          <svg-icon icon-class="xiangguanfenxi " class="tool-svg" />
+          <span>信息总览</span>
+        </p> -->
+        <!-- <p @click="toDetailOnClick('trend')">
           <svg-icon icon-class="合成分析 " class="tool-svg" />
           <span>出行趋势</span>
         </p>
@@ -26,7 +46,7 @@
         <p @click="toDetailOnClick('price')">
           <svg-icon icon-class="fenxi2 " class="tool-svg" />
           <span>交通费用</span>
-        </p>
+        </p> -->
       </div>
       <div class="user-more">
         <span class="more-bg"></span>
@@ -112,7 +132,7 @@ export default {
     display: flex;
     justify-content: start;
   }
-  img {
+  .avatar {
     width: 140px;
     height: 140px;
     border-radius: 140px;
@@ -189,6 +209,11 @@ export default {
   }
 }
 .tripNav {
-  bottom: -824px !important;
+  bottom: 0px !important;
+  position: fixed !important;
+}
+.icon-img {
+  width: 55px;
+  padding-right: 50px;
 }
 </style>

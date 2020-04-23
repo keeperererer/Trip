@@ -575,7 +575,8 @@ export default {
   transition: all 0.3s;
 }
 .tripNav {
-  bottom: 155px !important;
+  bottom: 0px !important;
+  position: fixed !important;
 }
 </style>
 <style lang="scss">

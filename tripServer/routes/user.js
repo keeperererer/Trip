@@ -15,6 +15,7 @@ var pool = mysql.createPool({
   port: 3306,
   database: 'trip',
   timezone: '08:00',
+  charset: 'UTF8_GENERAL_CI',
 })
 
 router.post('/', function (req, res, next) {

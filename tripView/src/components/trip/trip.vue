@@ -1,7 +1,7 @@
 <template>
   <div class="trip">
     <div v-show="$route.name !== 'Map'" class="trip-box">
-      <img class="trip-bg" src="../../assets/trip-bg.jpg" alt>
+      <img class="trip-bg" src="../../assets/trip-bg.jpg" alt />
       <div class="trip-con">
         <md-tabs v-model="TripWay">
           <md-tab-pane name="徒步" label="徒步"></md-tab-pane>
@@ -10,97 +10,101 @@
           <md-tab-pane name="自驾" label="自驾"></md-tab-pane>
         </md-tabs>
         <div class="trip-border">
-          <p>累计{{TripWay}}</p>
-          <strong>{{distance}}</strong>
+          <p>累计{{ TripWay }}</p>
+          <strong>{{ distance }}</strong>
           <p>公里</p>
         </div>
-        <div class="trip-start" @click="tripStart">开始{{TripWay}}</div>
+        <div class="trip-start" @click="tripStart">开始{{ TripWay }}</div>
       </div>
     </div>
     <transition name="fademap">
       <div class="trip-map" v-if="$route.name === 'Map'">
-        <router-view/>
+        <router-view />
       </div>
     </transition>
-    <trip-nav></trip-nav>
+    <trip-nav class="tripNav"></trip-nav>
   </div>
 </template>
 <script>
-import { mapGetters,mapMutations } from 'vuex'
-import TripNav from '@/components/bottomNav/nav'
+import { mapGetters, mapMutations } from "vuex";
+import TripNav from "@/components/bottomNav/nav";
 export default {
-  name: 'trip',
-  components:{
+  name: "trip",
+  components: {
     TripNav
   },
-  data () {
+  data() {
     return {
-      TripWay: '徒步', // 出行方式
-      distance: '0.0',
+      TripWay: "徒步", // 出行方式
+      distance: "0.0",
       wayData: {
-        p1: '徒步',
-        p2: '跑步',
-        p3: '骑行',
-        p4: '自驾'
+        p1: "徒步",
+        p2: "跑步",
+        p3: "骑行",
+        p4: "自驾"
       }
-    }
+    };
   },
   // created(){
   //   console.log(this.userDistance.allWalk)
   // },
   computed: {
-    allDistanceData () {
-      return this.userDistance
+    allDistanceData() {
+      return this.userDistance;
     },
-    ...mapGetters(['userDistance'])
+    ...mapGetters(["userDistance"])
   },
   watch: {
-    '$route' (to) {
-      this.updataDistance(this.TripWay)
+    $route(to) {
+      this.updataDistance(this.TripWay);
     },
     TripWay: {
-      handler (val) {
-        this.updataDistance(val)
+      handler(val) {
+        this.updataDistance(val);
       },
       immediate: true
     }
   },
-   methods: {
+  methods: {
     ...mapMutations({
-      setWeatherArr:'SET_WEATHER_ARR'
+      setWeatherArr: "SET_WEATHER_ARR"
     }),
-    updataDistance (val) {
+    updataDistance(val) {
       switch (val) {
-        case '徒步':
-          this.distance = this.allDistanceData.allWalk
-          break
-        case '跑步':
-          this.distance = this.allDistanceData.allRun
-          break
-        case '骑行':
-          this.distance = this.allDistanceData.allCycle
-          break
-        case '自驾':
-          this.distance = this.allDistanceData.allDrive
-          break
+        case "徒步":
+          this.distance = this.allDistanceData.allWalk;
+          break;
+        case "跑步":
+          this.distance = this.allDistanceData.allRun;
+          break;
+        case "骑行":
+          this.distance = this.allDistanceData.allCycle;
+          break;
+        case "自驾":
+          this.distance = this.allDistanceData.allDrive;
+          break;
       }
     },
-    tripStart () {
+    tripStart() {
       // console.log('天气11')
       // let params = {
       //   city: 110101,
       //   key: c20caaeac66c17928f1da30a415a29cd,
       // }
-      this.$http.get('https://restapi.amap.com/v3/weather/weatherInfo?city=430103&key=c20caaeac66c17928f1da30a415a29cd',{}).then(res => {
-        let weatherArr = res.data.lives
-        this.setWeatherArr(weatherArr)
-
-      })
+      this.$http
+        .get(
+          "https://restapi.amap.com/v3/weather/weatherInfo?city=430103&key=c20caaeac66c17928f1da30a415a29cd",
+          {}
+        )
+        .then(res => {
+          let weatherArr = res.data.lives;
+          this.setWeatherArr(weatherArr);
+        });
       // console.log('天气22')
-      this.$router.push({ name: 'Map', params: { tripType: this.TripWay } })
+      this.$router.push({ name: "Map", params: { tripType: this.TripWay } });
     }
-   }
-}
+  }
+};
 </script>
 <style lang="scss" scoped>
 .trip {
@@ -185,6 +189,10 @@ p:nth-child(3) {
 }
 .fademap-leave-active {
   transition: all 0.3s;
+}
+.tripNav {
+  bottom: 0px !important;
+  position: fixed !important;
 }
 </style>
 <style lang="scss">

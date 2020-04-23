@@ -3,6 +3,7 @@
     class="md-example-child md-example-child-result-page md-example-child-result-page-0"
   >
     <md-result-page type="lost"> </md-result-page>
+    <div @click="back" class="back">返回主页</div>
   </div>
 </template>
 
@@ -16,6 +17,11 @@ export default {
   /* DELETE */
   components: {
     [ResultPage.name]: ResultPage
+  },
+  methods: {
+    back() {
+      this.$router.push({ path: "/" });
+    }
   }
 };
 </script>
@@ -28,5 +34,10 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: -100px;
+}
+.back {
+  font-size: 30px;
+  margin-top: 10px;
+  color: #666;
 }
 </style>
