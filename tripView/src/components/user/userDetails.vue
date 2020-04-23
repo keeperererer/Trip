@@ -1,11 +1,20 @@
 <template>
   <div class="userDetails">
-    <img src="../../assets/any3.png" class="user-bg" />
+    <img
+      src="../../assets/any3.png"
+      style="width: 100%;
+        height: 100%;
+        opacity: 0.7;"
+    />
     <div class="user-bg1"></div>
     <div class="user-top">
       <div class="loadAvatar" data-text="上传头像" @click="loadAvatar">
         <input type="file" accept="image/*" class="loadInput" />
-        <img :src="avatar" class="user-top-img" />
+        <img
+          :src="avatar"
+          style="width: 80%;
+          border-radius: 80%;"
+        />
       </div>
       <div class="user-top-account">
         <p>昵称：{{ userData.name }}</p>

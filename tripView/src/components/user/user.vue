@@ -4,11 +4,15 @@
     <div class="user-bg"></div>
     <div class="user-content">
       <div class="user-title">
-        <img
-          :src="avatar"
-          @click="toDetailOnClick('userDetails')"
-          class="avatar"
-        />
+        <div class="avatar">
+          <img
+            :src="avatar"
+            @click="toDetailOnClick('userDetails')"
+            style="width:100%;
+            border-radius:50%;
+            "
+          />
+        </div>
         <div class="user-title-account">
           <p>昵称：{{ userData.name }}</p>
           <p>帐号：{{ userData.userName }}</p>
@@ -16,19 +20,39 @@
       </div>
       <div class="user-tool">
         <p @click="toDetailOnClick('allTrip')">
-          <img src="../../assets/相关分析.png" alt="" class="icon-img" />
+          <img
+            src="../../assets/相关分析.png"
+            alt=""
+            style="width: 20%;
+            padding-right: 20%;"
+          />
           <span>信息总览</span>
         </p>
         <p @click="toDetailOnClick('trend')">
-          <img src="../../assets/合成分析.png" alt="" class="icon-img" />
+          <img
+            src="../../assets/合成分析.png"
+            alt=""
+            style="width: 20%;
+            padding-right: 20%;"
+          />
           <span>出行趋势</span>
         </p>
         <p @click="toDetailOnClick('tripWay')">
-          <img src="../../assets/分析.png" alt="" class="icon-img" />
+          <img
+            src="../../assets/分析.png"
+            alt=""
+            style="width: 20%;
+            padding-right: 20%;"
+          />
           <span>出行方式</span>
         </p>
         <p @click="toDetailOnClick('price')">
-          <img src="../../assets/分析1.png" alt="" class="icon-img" />
+          <img
+            src="../../assets/分析1.png"
+            alt=""
+            style="width: 20%;
+            padding-right: 20%;"
+          />
           <span>交通费用</span>
         </p>
         <!-- <p @click="toDetailOnClick('allTrip')">

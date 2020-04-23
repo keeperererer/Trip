@@ -1,7 +1,9 @@
 <template>
   <div class="trip">
     <div v-show="$route.name !== 'Map'" class="trip-box">
-      <img class="trip-bg" src="../../assets/trip-bg.jpg" alt />
+      <div class="trip-bg">
+        <img src="../../assets/trip-bg.jpg" style="width:100%" />
+      </div>
       <div class="trip-con">
         <md-tabs v-model="TripWay">
           <md-tab-pane name="徒步" label="徒步"></md-tab-pane>
@@ -120,6 +122,7 @@ export default {
   top: 0;
   left: 0;
   opacity: 0.5;
+  overflow: hidden;
 }
 .trip-con {
   width: 100%;

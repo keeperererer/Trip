@@ -5,7 +5,7 @@
     </ul>
     <div class="login-bg">
       <div class="login-logo">
-        <img src="../../assets/login-logo1.svg" alt />
+        <img src="../../assets/login.png" style="width:60%;padding-left:20%;" />
       </div>
       <md-field class="login-input">
         <md-input-item
@@ -150,10 +150,10 @@ export default {
 // img {
 //   margin: -40px 0;
 // }
-img {
-  width: 100px;
-  margin-left: 25px;
-}
+// img {
+//   width: 100px;
+//   margin-left: 25px;
+// }
 .bg-bubbles {
   position: absolute;
   // 使气泡背景充满整个屏幕
