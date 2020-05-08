@@ -306,7 +306,7 @@
     <script>
       $(function () {
         $.ajax({
-          url: 'http://localhost:3000/back/totalData',
+          url: 'http://121.36.9.77:3000/back/totalData',
           type: 'GET',
           success: function (data) {
             let s = ''
@@ -358,14 +358,14 @@
 
             $.ajax({
               type: 'post',
-              url: 'http://localhost:3000/back/updateTotalData',
+              url: 'http://121.36.9.77:3000/back/updateTotalData',
               data: data,
               cache: true,
               async: true,
               success: function (data) {
                 if (data.code == 400) {
                   $.ajax({
-                    url: 'http://localhost:3000/back/totalData',
+                    url: 'http://121.36.9.77:3000/back/totalData',
                     type: 'GET',
                     success: function (data) {
                       window.location.reload()
@@ -397,14 +397,14 @@
             console.log(delData)
             $.ajax({
               type: 'post',
-              url: 'http://localhost:3000/back/deleteTotalData',
+              url: 'http://121.36.9.77:3000/back/deleteTotalData',
               data: delData,
               cache: true,
               async: true,
               success: function (data) {
                 if (data.code == 400) {
                   $.ajax({
-                    url: 'http://localhost:3000/back/totalData',
+                    url: 'http://121.36.9.77:3000/back/totalData',
                     type: 'GET',
                     success: function (data) {
                       window.location.reload()
@@ -444,14 +444,14 @@
             }
             $.ajax({
               type: 'post',
-              url: 'http://localhost:3000/back/addTotalData',
+              url: 'http://121.36.9.77:3000/back/addTotalData',
               data: data,
               cache: true,
               async: true,
               success: function (data) {
                 if (data.code == 400) {
                   $.ajax({
-                    url: 'http://localhost:3000/back/totalData',
+                    url: 'http://121.36.9.77:3000/back/totalData',
                     type: 'GET',
                     success: function (data) {
                       window.location.reload()

@@ -449,7 +449,7 @@
     <script>
       $(function () {
         $.ajax({
-          url: 'http://localhost:3000/back/regNum',
+          url: 'http://121.36.9.77:3000/back/regNum',
           type: 'GET',
           success: function (data) {
             var html = data.data.length + '人'
@@ -457,7 +457,7 @@
           },
         })
         $.ajax({
-          url: 'http://localhost:3000/back/personNum',
+          url: 'http://121.36.9.77:3000/back/personNum',
           type: 'GET',
           success: function (data) {
             var html = data.data.length + '次'
@@ -465,7 +465,7 @@
           },
         })
         $.ajax({
-          url: 'http://localhost:3000/back/trafficNum',
+          url: 'http://121.36.9.77:3000/back/trafficNum',
           type: 'GET',
           success: function (data) {
             var html = data.data.length + '次'
@@ -473,7 +473,7 @@
           },
         })
         $.ajax({
-          url: 'http://localhost:3000/back/allNum',
+          url: 'http://121.36.9.77:3000/back/allNum',
           type: 'GET',
           success: function (data) {
             let sumWalk = 0
@@ -533,7 +533,7 @@
           },
         })
         $.ajax({
-          url: 'http://localhost:3000/back/price',
+          url: 'http://121.36.9.77:3000/back/price',
           type: 'GET',
           success: function (data) {
             let SubwayPrice = 0,

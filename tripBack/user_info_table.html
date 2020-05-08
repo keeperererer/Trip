@@ -279,7 +279,7 @@
     <script>
       $(function () {
         $.ajax({
-          url: 'http://localhost:3000/back/userInfo',
+          url: 'http://121.36.9.77:3000/back/userInfo',
           type: 'GET',
           success: function (data) {
             let s = ''
@@ -314,14 +314,14 @@
 
             $.ajax({
               type: 'post',
-              url: 'http://localhost:3000/back/updateUserInfo',
+              url: 'http://121.36.9.77:3000/back/updateUserInfo',
               data: data,
               cache: true,
               async: true,
               success: function (data) {
                 if (data.code == 400) {
                   $.ajax({
-                    url: 'http://localhost:3000/back/userInfo',
+                    url: 'http://121.36.9.77:3000/back/userInfo',
                     type: 'GET',
                     success: function (data) {
                       window.location.reload()
@@ -353,14 +353,14 @@
             console.log(delData)
             $.ajax({
               type: 'post',
-              url: 'http://localhost:3000/back/deleteUserInfo',
+              url: 'http://121.36.9.77:3000/back/deleteUserInfo',
               data: delData,
               cache: true,
               async: true,
               success: function (data) {
                 if (data.code == 400) {
                   $.ajax({
-                    url: 'http://localhost:3000/back/userInfo',
+                    url: 'http://121.36.9.77:3000/back/userInfo',
                     type: 'GET',
                     success: function (data) {
                       window.location.reload()
@@ -394,14 +394,14 @@
             }
             $.ajax({
               type: 'post',
-              url: 'http://localhost:3000/back/addUserInfo',
+              url: 'http://121.36.9.77:3000/back/addUserInfo',
               data: data,
               cache: true,
               async: true,
               success: function (data) {
                 if (data.code == 400) {
                   $.ajax({
-                    url: 'http://localhost:3000/back/userInfo',
+                    url: 'http://121.36.9.77:3000/back/userInfo',
                     type: 'GET',
                     success: function (data) {
                       window.location.reload()
