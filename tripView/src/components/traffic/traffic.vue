@@ -192,8 +192,6 @@ export default {
   mounted() {
     this.init();
     this.locationMap();
-    // this.searchDriving()
-    // this.searchKey()
   },
   methods: {
     /** action */
@@ -318,7 +316,6 @@ export default {
         autoComplete.search(keyword, function(status, result) {
           Toast.hide();
           // 搜索成功时，result即是对应的匹配数据
-          // console.log(status, result)
           if (status !== "complete") {
             that.searchResult = [];
             return;
@@ -333,49 +330,38 @@ export default {
     },
     // 查找路线
     searchDriving(LngLatArr) {
-      // console.log('LngLatArr')
-      // console.log(LngLatArr)
       this.ToastHide("正在规划路线...");
       let that = this;
       let type = that.tripTypeMarriage.slice(5, 15);
-      // console.log(type)
       this.trafficMap.plugin(that.tripTypeMarriage, function() {
         that.driving = new window.AMap[type]({
           map: that.trafficMap,
           city: "北京市",
           panel: "panel",
           autoFitView: true
-          //   policy: window.AMap.TransferPolicy.LEAST_TIME
         });
         // 根据起终点经纬度规划驾车导航路线
-        that.driving.search(
-          LngLatArr[0],
-          LngLatArr[1],
-          //   new window.AMap.LngLat(116.291035, 39.907899),
-          //   new window.AMap.LngLat(116.427281, 39.903719),
-          function(status, result) {
-            // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
-            Toast.hide();
-            // console.log(status, result)
-            if (status === "complete") {
-              // console.log('绘制驾车路线完成')
-              that.panelListShow = true;
-              // 存第一条轨迹的路程
-              if (result.plans) {
-                that.distance = (result.plans[0].distance / 1000).toFixed(2);
-              } else {
-                that.distance = (result.routes[0].distance / 1000).toFixed(2);
-              }
-              //   that.isPanelShow = true
+        that.driving.search(LngLatArr[0], LngLatArr[1], function(
+          status,
+          result
+        ) {
+          // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+          Toast.hide();
+          // console.log(status, result)
+          if (status === "complete") {
+            // console.log('绘制驾车路线完成')
+            that.panelListShow = true;
+            // 存第一条轨迹的路程
+            if (result.plans) {
+              that.distance = (result.plans[0].distance / 1000).toFixed(2);
             } else {
-              // console.log('获取驾车数据失败：' + result)
-              Toast.failed("未检测到匹配路线");
+              that.distance = (result.routes[0].distance / 1000).toFixed(2);
             }
+            //   that.isPanelShow = true
+          } else {
+            Toast.failed("未检测到匹配路线");
           }
-        );
-        // window.AMap.event.addListener(that.driving, 'complete', function (e) {
-        //   console.log(e)
-        // }) // 返回定位出错信息
+        });
       });
     },
     // 定位
@@ -397,9 +383,7 @@ export default {
           geolocation.getCurrentPosition(function(status, result) {
             // Toast.hide()
           });
-          window.AMap.event.addListener(geolocation, "error", function(e) {
-            // console.log(e)
-          }); // 返回定位出错信息
+          window.AMap.event.addListener(geolocation, "error", function(e) {}); // 返回定位出错信息
         }
       );
     },

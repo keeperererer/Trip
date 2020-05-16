@@ -63,8 +63,15 @@ export default {
       SET_USER_DATA: "SET_USER_DATA"
     }),
     loginOnClick() {
-      Toast.succeed(`新用户将自动注册`);
-      this.loginAjax();
+      if (
+        !this.user.name.trim() ||
+        !this.user.phone.trim() ||
+        !this.user.password.trim()
+      ) {
+        Toast.info(`不能为空!`);
+      } else {
+        this.loginAjax();
+      }
     },
     loginAjax() {
       let params = {
@@ -73,32 +80,35 @@ export default {
         passWord: this.user.password
       };
       this.$http.post("/user", params).then(res => {
-        this.userData = res.data.data;
-        //将js对象转换为字符串
-        let tmpUser = JSON.stringify(this.userData);
-        let token = res.data.token;
-        // 登录信息存到本地
-        localStorage.setItem("user", tmpUser);
-        localStorage.setItem("tripToken", token);
-        // 存到vuex
-        this.setUser(this.userData);
-
-        let goInUser = new Promise(reslove => {
-          this.$http
-            .get("/trip/allDistance", { userId: this.userData.id })
-            .then(res => {
-              let obj = res.data.data;
-              this.SET_USER_DATA(obj);
-              reslove();
-              // this.setUserData(res.data.data)
-            });
-        });
-        goInUser.then(_ => {
-          setTimeout(() => {
-            Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.user.name}`, 3000);
-            this.$router.push({ path: "/trip" });
-          }, 1000);
-        });
+        console.log(res);
+        if (res.data.msg == "sucess") {
+          this.userData = res.data.data;
+          //将js对象转换为字符串
+          let tmpUser = JSON.stringify(this.userData);
+          let token = res.data.token;
+          // 登录信息存到本地
+          localStorage.setItem("user", tmpUser);
+          localStorage.setItem("tripToken", token);
+          // 存到vuex
+          this.setUser(this.userData);
+          Toast.succeed(`新用户将自动注册`);
+          let goInUser = new Promise(reslove => {
+            this.$http
+              .get("/trip/allDistance", { userId: this.userData.id })
+              .then(res => {
+                let obj = res.data.data;
+                this.SET_USER_DATA(obj);
+                reslove();
+                // this.setUserData(res.data.data)
+              });
+          });
+          goInUser.then(_ => {
+            setTimeout(() => {
+              Toast.succeed(`欢迎*★,(￣▽￣)/$:*. 。，${this.user.name}`, 3000);
+              this.$router.push({ path: "/trip" });
+            }, 1000);
+          });
+        }
       });
     },
     ...mapActions(["setUser", "setUserData"])

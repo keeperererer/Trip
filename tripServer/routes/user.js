@@ -45,7 +45,7 @@ router.post('/', function (req, res, next) {
           config.jwtSecret
         )
         data.code = 200
-        data.msg = 'sucess'
+        data.msg = 'success'
         data.data = results[0]
         res.statusCode = 200
         res.setHeader('Access-Control-Allow-Origin', '*')

@@ -166,9 +166,6 @@ export default {
             }
           }
         );
-        // window.AMap.event.addListener(that.driving, 'complete', function (e) {
-        //   console.log(e)
-        // }) // 返回定位出错信息
       });
     },
     // 定时取消Toast
