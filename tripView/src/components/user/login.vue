@@ -50,6 +50,9 @@ export default {
         phone: "18773816666",
         name: "小吉",
         password: "12345"
+        // phone: "",
+        // name: "",
+        // password: ""
       },
       bubbles: []
     };
@@ -81,14 +84,14 @@ export default {
       };
       this.$http.post("/user", params).then(res => {
         console.log(res);
-        if (res.data.msg == "sucess") {
+        if (res.data.msg == "success") {
           this.userData = res.data.data;
           //将js对象转换为字符串
           let tmpUser = JSON.stringify(this.userData);
           let token = res.data.token;
           // 登录信息存到本地
           localStorage.setItem("user", tmpUser);
-          localStorage.setItem("tripToken", token);
+          // localStorage.setItem("tripToken", token);
           // 存到vuex
           this.setUser(this.userData);
           Toast.succeed(`新用户将自动注册`);
@@ -97,9 +100,10 @@ export default {
               .get("/trip/allDistance", { userId: this.userData.id })
               .then(res => {
                 let obj = res.data.data;
+                console.log(obj);
                 this.SET_USER_DATA(obj);
                 reslove();
-                // this.setUserData(res.data.data)
+                this.setUserData(res.data.data);
               });
           });
           goInUser.then(_ => {

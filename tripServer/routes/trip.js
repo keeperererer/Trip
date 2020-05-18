@@ -73,6 +73,17 @@ router.get('/allDistance', function (req, res, next) {
     allDistanceData = results[0]
     console.log(allDistanceData)
     res.statusCode = 200
+    if (allDistanceData == undefined) {
+      data.data = {
+        userId: parseInt(tmpId),
+        allWalk: 0,
+        allRun: 0,
+        allCycle: 0,
+        allDrive: 0,
+        allBus: 0,
+        allTaxi: 0,
+      }
+    }
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Content-Type', 'application/json')
     res.json(data)
