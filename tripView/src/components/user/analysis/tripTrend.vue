@@ -2,7 +2,7 @@
   <div class="trend">
     <div class="trend-title">
       <h2>出行趋势</h2>
-      <p>最近七天内，2种行程，8种出行方式的里程趋势折线图</p>
+      <p>最近七天内，两种出行的里程趋势折线图</p>
     </div>
     <lineChart ref="echart1" class="trend-echart"></lineChart>
     <lineChart ref="echart2" class="trend-echart-btm"></lineChart>
@@ -23,35 +23,36 @@ export default {
       trafficData: null,
       tripData: null,
       data1: {
-        title: "私人出行",
+        title: "个人出行",
         legendData: ["跑步", "徒步", "骑行", "自驾"],
         seriesData: [
           {
             name: "徒步",
             type: "line",
             stack: "里程",
-            data: [20, 132, 101, 134, 90, 330, 210],
+            // data: [20, 132, 101, 134, 90, 330, 210],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#fac081"
           },
           {
             name: "跑步",
             type: "line",
             stack: "里程",
-            data: [150, 232, 201, 454, 190, 330, 410],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#8bc34a"
           },
           {
             name: "骑行",
             type: "line",
             stack: "里程",
-            data: [90, 122, 151, 124, 200, 210, 190],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#df96ca"
           },
           {
             name: "自驾",
             type: "line",
             stack: "里程",
-            data: [189, 102, 230, 410, 287, 180, 200],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#9c27b0"
           }
         ]
@@ -64,28 +65,28 @@ export default {
             name: "步行",
             type: "line",
             stack: "里程",
-            data: [90, 132, 101, 134, 90, 230, 210],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#9c27b0"
           },
           {
             name: "单车",
             type: "line",
             stack: "里程",
-            data: [150, 292, 201, 154, 190, 330, 410],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#df96ca"
           },
           {
             name: "出租",
             type: "line",
             stack: "里程",
-            data: [90, 122, 151, 84, 80, 210, 190],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#8bc34a"
           },
           {
             name: "公交",
             type: "line",
             stack: "里程",
-            data: [89, 82, 230, 210, 387, 280, 100],
+            data: [0, 0, 0, 0, 0, 0, 0],
             color: "#fac081"
           }
         ]
@@ -131,9 +132,20 @@ export default {
           }
         }
       });
-      this.xAxisData = Object.keys(tmpItem["跑步"].data)
-        .join()
-        .split(",");
+      console.log("tmpItem", tmpItem);
+      if (tmpItem) {
+        for (let item in tmpItem) {
+          console.log("item", item);
+          if (item) {
+            this.xAxisData = Object.keys(tmpItem[item].data)
+              .join()
+              .split(",");
+          }
+        }
+      }
+      // this.xAxisData = Object.keys(tmpItem["公交"].data)
+      //   .join()
+      //   .split(",");
       this.xAxisData.forEach((item, index) => {
         this.xAxisData[index] = item + "日";
       });
@@ -171,6 +183,7 @@ export default {
     fetchData() {
       this.$http.get("/user/tripTrend", {}).then(res => {
         this.allData = res.data.data;
+        console.log("allData", this.allData);
         this.$refs.echart1.echartsUpdata(this.data1, this.xAxisData);
         this.$refs.echart2.echartsUpdata(this.data2, this.xAxisData);
         Toast.hide();

@@ -8,12 +8,12 @@ var data = {
   msg: 'success',
 } //最后返回的json对象
 var allDistanceData = {
-  allBus: 0,
-  allCycle: 0,
-  allDrive: 0,
-  allRun: 0,
-  allTaxi: 0,
-  allWalk: 0,
+  allBus: 0.0,
+  allCycle: 0.0,
+  allDrive: 0.0,
+  allRun: 0.0,
+  allTaxi: 0.0,
+  allWalk: 0.0,
 }
 var pool = mysql.createPool({
   host: 'localhost',

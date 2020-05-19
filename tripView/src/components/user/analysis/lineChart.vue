@@ -4,79 +4,78 @@
   </div>
 </template>
 <script>
-import echarts from 'echarts'
+import echarts from "echarts";
 export default {
-  name: 'LineChart',
-  data () {
+  name: "LineChart",
+  data() {
     return {
       chart: null,
       echartId: `echart${Math.floor(Math.random() * 10000000)}`
-    }
+    };
   },
-  mounted () {
-  },
+  mounted() {},
   methods: {
-    initChart (data, xAxisData) {
-      this.chart = echarts.init(document.getElementById(this.echartId))
+    initChart(data, xAxisData) {
+      this.chart = echarts.init(document.getElementById(this.echartId));
       this.chart.setOption({
         title: {
           text: data.title,
           textStyle: {
-            fontSize: '15'
+            fontSize: "15"
           }
         },
         tooltip: {
-          trigger: 'axis'
+          trigger: "axis"
         },
         legend: {
           data: data.legendData,
-          top: '12%'
+          top: "12%"
         },
         grid: {
-          left: '2%',
-          right: '4%',
-          bottom: '0%',
-          top: '22%',
+          left: "2%",
+          right: "4%",
+          bottom: "0%",
+          top: "22%",
           containLabel: true
         },
         toolbox: {
           feature: {
-            magicType: { show: true, type: ['line', 'bar'] },
+            magicType: { show: true, type: ["line", "bar"] },
             restore: { show: true },
             saveAsImage: { show: true }
           }
         },
         xAxis: {
-          type: 'category',
+          type: "category",
           boundaryGap: false,
           data: xAxisData
         },
         yAxis: {
-          type: 'value',
-          name: '公里'
+          type: "value",
+          name: "公里"
         },
         series: data.seriesData
-      })
+      });
     },
     /** public */
     // 对外接口，先销毁，再重建
-    echartsUpdata (data, xAxisData) {
-      this.eachartDestroy()
-      this.initChart(data, xAxisData)
+    echartsUpdata(data, xAxisData) {
+      this.eachartDestroy();
+      this.initChart(data, xAxisData);
     },
-    destroyed () {
-      this.eachartDestroy()
+    destroyed() {
+      this.eachartDestroy();
     },
     // 销毁echart
-    eachartDestroy () {
+    eachartDestroy() {
       if (!this.chart) {
-        return
+        return;
       }
-      this.chart.dispose()
-      this.chart = null
+      this.chart.dispose();
+      this.chart = null;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,93 +1,92 @@
 <template>
-	<div class="allTrip">
-    <!-- <img class="any-bg" src="../../../assets/any1.png" alt> -->
+  <div class="allTrip">
     <h2>出行总里程</h2>
-		<div id="main" class="echarts-canvas"></div>
-	</div>
+    <div id="main" class="echarts-canvas"></div>
+  </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import echarts from 'echarts'
+import { mapGetters, mapActions } from "vuex";
+import echarts from "echarts";
 export default {
-  data () {
+  data() {
     return {
       chart: null,
       distanceArr: []
-    }
+    };
   },
   computed: {
-  	...mapGetters(['user','userDistance'])
+    ...mapGetters(["user", "userDistance"])
   },
-  mounted () {
+  mounted() {
     // this.initChart()
-    this.userData = this.user
-    delete this.userDistance.userId
-    this.distanceArr = Object.values(this.userDistance)
+    this.userData = this.user;
+    delete this.userDistance.userId;
+    this.distanceArr = Object.values(this.userDistance);
     // console.log(this.distanceArr)
     this.$nextTick(() => {
-      this.initChart(this.distanceArr)
-    })
+      this.initChart(this.distanceArr);
+    });
   },
   methods: {
-    initChart (data, text) {
-      this.chart = echarts.init(document.getElementById('main'))
+    initChart(data, text) {
+      this.chart = echarts.init(document.getElementById("main"));
       this.chart.setOption({
-        tooltip: {
-        },
+        tooltip: {},
         toolbox: {
           feature: {
-            magicType: { show: true, type: ['line', 'bar'] },
+            magicType: { show: true, type: ["line", "bar"] },
             restore: { show: true },
             saveAsImage: { show: true }
           }
         },
         title: {
           text: text,
-          top: '5%'
+          top: "5%"
         },
         xAxis: {
-          data: ['徒步', '跑步', '骑行', '自驾', '公交', '出租']
+          data: ["徒步", "跑步", "骑行", "自驾", "公交", "出租"]
         },
         yAxis: {
-          name: '公里'
+          name: "公里"
         },
-        series: [{
-          name: '总里程',
-          type: 'bar',
-          itemStyle: {
-          color: '#f37570'
-          },
-          grid: {
-            left: '2%',
-            right: '4%',
-            bottom: '0%',
-            top: '0%',
-            containLabel: true
-          },
-          data: data
-        }]
-      })
+        series: [
+          {
+            name: "总里程",
+            type: "bar",
+            itemStyle: {
+              color: "#f37570"
+            },
+            grid: {
+              left: "2%",
+              right: "4%",
+              bottom: "0%",
+              top: "0%",
+              containLabel: true
+            },
+            data: data
+          }
+        ]
+      });
     },
     /** public */
     // 对外接口，先销毁，再重建
-    echartsUpdata (data) {
-      this.eachartDestroy()
-      this.initChart(data)
+    echartsUpdata(data) {
+      this.eachartDestroy();
+      this.initChart(data);
     },
-    destroyed () {
-      this.eachartDestroy()
+    destroyed() {
+      this.eachartDestroy();
     },
     // 销毁echart
-    eachartDestroy () {
+    eachartDestroy() {
       if (!this.chart) {
-        return
+        return;
       }
-      this.chart.dispose()
-      this.chart = null
+      this.chart.dispose();
+      this.chart = null;
     }
   }
-
-}
+};
 </script>
 <style lang="scss" scoped>
 .allTrip {
@@ -106,7 +105,7 @@ h2 {
   font-size: 40px;
   text-align: center;
 }
-.echarts-canvas{
+.echarts-canvas {
   width: 100%;
   height: 60%;
 }
