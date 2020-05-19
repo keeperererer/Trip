@@ -13,7 +13,7 @@
           type="name"
           ref="nick"
           title="昵称"
-          placeholder="请输入昵称"
+          placeholder="请输入昵称 长度不超过五个符号"
         ></md-input-item>
         <md-input-item
           v-model="user.phone"
@@ -72,6 +72,10 @@ export default {
         !this.user.password.trim()
       ) {
         Toast.info(`不能为空!`);
+      } else if (this.user.name.trim().length > 5) {
+        Toast.info(`昵称长度不超过五个符号`);
+      } else if (this.user.phone.trim().length < 11) {
+        Toast.info(`请求输入正确长度的手机号`);
       } else {
         this.loginAjax();
       }
@@ -84,6 +88,9 @@ export default {
       };
       this.$http.post("/user", params).then(res => {
         console.log(res);
+        if (res.data.msg == "账号或密码输入有误") {
+          Toast.info(`账号或密码输入有误`);
+        }
         if (res.data.msg == "success") {
           this.userData = res.data.data;
           //将js对象转换为字符串
