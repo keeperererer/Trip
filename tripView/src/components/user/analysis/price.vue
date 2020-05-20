@@ -24,7 +24,6 @@ export default {
           {
             type: "line",
             data: [0, 0, 0]
-            // data: [20, 132, 101]
           }
         ]
       },
@@ -37,43 +36,49 @@ export default {
   },
   methods: {
     updatefetchData() {
+      let sum = 0;
       let sum1 = 0;
       let sum2 = 0;
       let sum3 = 0;
-      let tmpItem = {};
-      // if()
-      this.allData.forEach(item => {
-        if (!tmpItem[item.tripType]) {
-          tmpItem[item.tripType] = {
-            data: {}
-          };
+      let tmpItem = {
+        "公交/地铁": {
+          data: {}
+        },
+        出租车: {
+          data: {}
+        },
+        "单车/电车": {
+          data: {}
         }
-        if (item.tripType == "公交/地铁") {
-          // let sum = 0
-          sum1 += parseInt(item.price);
-          tmpItem[item.tripType].data = sum1;
+      };
+      for (let item in tmpItem) {
+        tmpItem[item] = 0;
+        console.log("item", item + "" + tmpItem[item]);
+        if (this.allData) {
+          this.allData.forEach(index => {
+            console.log("index", index);
+            if (item == index.tripType) {
+              console.log(item + "" + index.tripType);
+              tmpItem[item] = index.price;
+            }
+          });
         }
-        if (item.tripType == "出租车") {
-          sum2 = parseInt(item.price);
-          tmpItem[item.tripType].data = sum2;
-        }
-        if (item.tripType == "单车/电车") {
-          sum3 = parseInt(item.price);
-          tmpItem[item.tripType].data = sum3;
-        }
-      });
+      }
+      console.log("allData", this.allData);
+      console.log("tmpItem", tmpItem);
       this.Data = {
         seriesData: [
           {
             type: "line",
             data: [
-              parseInt(tmpItem["公交/地铁"].data),
-              parseInt(tmpItem["出租车"].data),
-              parseInt(tmpItem["单车/电车"].data)
+              parseInt(tmpItem["公交/地铁"]),
+              parseInt(tmpItem["出租车"]),
+              parseInt(tmpItem["单车/电车"])
             ]
           }
         ]
       };
+      console.log("Data", this.Data);
       this.$refs.echart.echartsUpdata(this.Data, this.xAxisData);
     },
     /** ajax */
