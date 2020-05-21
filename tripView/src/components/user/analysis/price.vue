@@ -53,19 +53,14 @@ export default {
       };
       for (let item in tmpItem) {
         tmpItem[item] = 0;
-        console.log("item", item + "" + tmpItem[item]);
         if (this.allData) {
           this.allData.forEach(index => {
-            console.log("index", index);
             if (item == index.tripType) {
-              console.log(item + "" + index.tripType);
-              tmpItem[item] = index.price;
+              tmpItem[item] += parseInt(index.price);
             }
           });
         }
       }
-      console.log("allData", this.allData);
-      console.log("tmpItem", tmpItem);
       this.Data = {
         seriesData: [
           {
@@ -78,7 +73,6 @@ export default {
           }
         ]
       };
-      console.log("Data", this.Data);
       this.$refs.echart.echartsUpdata(this.Data, this.xAxisData);
     },
     /** ajax */
