@@ -38,6 +38,7 @@
         >GO</md-button
       >
     </div>
+    <!-- 搜索展示区 -->
     <div class="search-list" :id="searchListShow ? 'searchList' : ''">
       <p class="up-btn" @click="searchResultDown">
         <svg-icon class="up-svg" icon-class="down" />
@@ -54,16 +55,25 @@
         />
       </md-field>
       <div class="no-result" v-if="searchResult.length === 0">
-        <md-result-page></md-result-page>
+        <!-- 历史记录 -->
+        <md-field>
+          <md-cell-item
+            v-for="(item, index) in historyResult"
+            :key="index"
+            @click="historysResultListOnClick(item)"
+            :title="item"
+          />
+        </md-field>
       </div>
     </div>
+    <!-- 推荐路线 -->
     <div
       v-if="isPanelShow"
       class="panel-list"
       :id="panelListShow ? 'panelList' : ''"
     >
       <p @click="panelListAuto" class="panel-list-title">
-        <span>已如下推荐路线</span>
+        <span>已如下推荐路线:</span>
         <svg-icon v-if="!panelListShow" class="up-svg" icon-class="up" />
         <svg-icon v-else class="up-svg" icon-class="down" />
         <span class="sure-btn" @click.stop="panelSureOnClick">确定</span>
@@ -124,6 +134,8 @@ export default {
   },
   data() {
     return {
+      searchWord: [],
+      historyResult: [], //历史记录
       spendValue: 0, // 出行花费
       trafficMap: null, // 地图实例
       searchState: "start", // 当前聚焦状态start,Objective
@@ -189,12 +201,15 @@ export default {
       }
     }
   },
+  created: function() {
+    this.historyResult = localStorage.getItem("searchWord");
+    this.historyResult = this.historyResult.split(",");
+  },
   mounted() {
     this.init();
     this.locationMap();
   },
   methods: {
-    /** action */
     // 搜索框聚焦
     searchOnFocus(e) {
       this.searchState = e;
@@ -227,6 +242,14 @@ export default {
       this.searchListShow = false; // 放下结果页
       this.watchStop = true; // 本轮停止请求
     },
+    //点击历史记录列表
+    historysResultListOnClick(item) {
+      if (this.searchState === "start") {
+        this.searchStart = item;
+      } else {
+        this.searchObjective = item;
+      }
+    },
     // 选择出行方式
     trafficTypeOnClick() {
       this.tripTypePopupShow = true;
@@ -253,6 +276,12 @@ export default {
       tmpArr.push(this.searchObjectiveData.location);
       this.isPanelShow = true;
       this.searchDriving(tmpArr);
+      this.searchWord.unshift(this.searchStart);
+      this.searchWord.unshift(this.searchObjective);
+      if (this.searchWord.length > 8) {
+        this.searchWord.slice(0, 8);
+      }
+      localStorage.setItem("searchWord", this.searchWord);
     },
     // 确定路线
     panelSureOnClick() {
@@ -279,9 +308,11 @@ export default {
     init() {
       this.trafficMap = new window.AMap.Map("container", {
         resizeEnable: true,
+        mapStyle: "amap://styles/fresh",
         center: [116.397428, 39.90923],
         zoom: 13 // 地图显示的缩放级别
       });
+      //实时路况
       var trafficLayer = new window.AMap.TileLayer.Traffic({
         zIndex: 10
       });
@@ -303,13 +334,11 @@ export default {
     },
     // 搜索关键字
     searchKey(keyword) {
-      //   Toast.loading('正在搜索...')
       this.ToastHide("正在搜索...");
       let that = this;
       this.trafficMap.plugin("AMap.Autocomplete", function() {
         // 实例化Autocomplete
         var autoOptions = {
-          // city 限定城市，默认全国
           city: "全国"
         };
         var autoComplete = new window.AMap.Autocomplete(autoOptions);
@@ -357,7 +386,6 @@ export default {
             } else {
               that.distance = (result.routes[0].distance / 1000).toFixed(2);
             }
-            //   that.isPanelShow = true
           } else {
             Toast.failed("未检测到匹配路线");
           }
@@ -367,7 +395,6 @@ export default {
     // 定位
     locationMap() {
       let that = this;
-      // this.ToastHide('定位中...')
       this.trafficMap.plugin(
         ["AMap.Geolocation", "AMap.ControlBar"],
         function() {
@@ -472,9 +499,9 @@ export default {
     transition: all 0.3s;
     overflow: auto;
     background: #ffffffe1;
-    .no-result {
-      margin-top: 120px;
-    }
+    // .no-result {
+    //   margin-top: 120px;
+    // }
   }
   .panel-list {
     position: absolute;

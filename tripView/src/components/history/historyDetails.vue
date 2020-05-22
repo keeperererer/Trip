@@ -57,19 +57,17 @@ export default {
       map: null,
       isPopupShow: true,
       data: {}
-      // geolocationData: [[116.306295, 40.053034], [116.319802, 39.98294]]
     };
   },
   mounted() {
     this.data = this.$route.params;
-    // console.log(this.$route)
     this.initMap();
     if (this.data.type === "trip") {
       // 画行走轨迹图
       this.mapPath();
     }
     if (this.data.type === "traffic") {
-      // 或路线规划图
+      // 画路线规划图
       this.searchDriving();
     }
     // this.data.date = this.data.date.slice(0, 10)
@@ -93,11 +91,9 @@ export default {
       let marker = new window.AMap.Marker({
         map: that.map,
         position: lineArr[0],
-        // icon: "https://webapi.amap.com/images/car.png",
-        icon: "https://i.loli.net/2020/04/21/s9EP8CQFrdDThHS.png",
         offset: new window.AMap.Pixel(-26, -13),
-        autoRotation: true
-        // angle: -90
+        autoRotation: true,
+        angle: 0
       });
 
       // 绘制轨迹
@@ -106,18 +102,13 @@ export default {
         path: lineArr,
         showDir: true,
         strokeColor: "#28F", // 线颜色
-        // strokeOpacity: 1,     //线透明度
         strokeWeight: 6 // 线宽
-        // strokeStyle: "solid"  //线样式
       });
 
       let passedPolyline = new window.AMap.Polyline({
         map: that.map,
-        // path: lineArr,
-        strokeColor: "red", // 线颜色
-        // strokeOpacity: 1,     //线透明度
+        strokeColor: "#6264e2", // 线颜色
         strokeWeight: 6 // 线宽
-        // strokeStyle: "solid"  //线样式
       });
 
       marker.on("moving", function(e) {
@@ -131,29 +122,20 @@ export default {
     searchDriving(LngLatArr) {
       this.ToastHide("正在规划路线...");
       let that = this;
-      //   let type = that.tripTypeMarriage.slice(5, 15)
-      //   console.log(type)
       this.map.plugin("AMap.Transfer", function() {
         that.driving = new window.AMap.Transfer({
           map: that.map,
           city: "北京市",
-          //   panel: 'panel',
           autoFitView: true
-          //   policy: window.AMap.TransferPolicy.LEAST_TIME
         });
         // 根据起终点经纬度规划驾车导航路线
         that.driving.search(
-          //   LngLatArr[0],
-          //   LngLatArr[1],
-          //   new window.AMap.LngLat(116.291035, 39.907899),
-          //   new window.AMap.LngLat(116.427281, 39.903719),
           new window.AMap.LngLat(
             that.data.startCode[0],
             that.data.startCode[1]
           ),
           new window.AMap.LngLat(that.data.endCode[0], that.data.endCode[1]),
           function(status, result) {
-            // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
             Toast.hide();
             console.log(status, result);
             if (status === "complete") {
@@ -250,13 +232,6 @@ export default {
     color: #666;
   }
 }
-// .detail {
-//   width: 100%;
-//   height: 100%;
-//   overflow: hidden;
-//   position: relative;
-//   color: #555555;
-// }
 .detail-con1 {
   position: absolute;
   top: 0;

@@ -47,9 +47,6 @@ export default {
       }
     };
   },
-  // created(){
-  //   console.log(this.userDistance.allWalk)
-  // },
   computed: {
     allDistanceData() {
       return this.userDistance;
@@ -88,11 +85,6 @@ export default {
       }
     },
     tripStart() {
-      // console.log('天气11')
-      // let params = {
-      //   city: 110101,
-      //   key: c20caaeac66c17928f1da30a415a29cd,
-      // }
       this.$http
         .get(
           "https://restapi.amap.com/v3/weather/weatherInfo?city=430103&key=c20caaeac66c17928f1da30a415a29cd",
