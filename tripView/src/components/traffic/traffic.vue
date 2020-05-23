@@ -203,7 +203,14 @@ export default {
   },
   created: function() {
     this.historyResult = localStorage.getItem("searchWord");
-    this.historyResult = this.historyResult.split(",");
+    this.historyResult = this.historyResult.split(",").reverse();
+    this.historyResult = [...new Set(this.historyResult)];
+    if (this.historyResult[0] == "") {
+      this.historyResult[0] = "长沙";
+    }
+    if (this.historyResult.length > 8) {
+      this.historyResult = this.historyResult.slice(0, 8);
+    }
   },
   mounted() {
     this.init();
@@ -219,6 +226,10 @@ export default {
         this.searchKeyBefore(this.searchStart);
       } else {
         this.searchKeyBefore(this.searchObjective);
+      }
+      if (localStorage.getItem("searchWord")) {
+      } else {
+        localStorage.setItem("searchWord", this.searchWord);
       }
     },
     // 失焦
@@ -278,10 +289,7 @@ export default {
       this.searchDriving(tmpArr);
       this.searchWord.unshift(this.searchStart);
       this.searchWord.unshift(this.searchObjective);
-      if (this.searchWord.length > 8) {
-        this.searchWord.slice(0, 8);
-      }
-      localStorage.setItem("searchWord", this.searchWord);
+      localStorage.searchWord = localStorage.searchWord + this.searchWord + ",";
     },
     // 确定路线
     panelSureOnClick() {
