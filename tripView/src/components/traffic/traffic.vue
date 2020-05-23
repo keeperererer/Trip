@@ -2,6 +2,7 @@
   <div class="traffic">
     <div id="container"></div>
     <trip-nav class="tripNav"></trip-nav>
+    <!-- 搜索框 -->
     <div class="search">
       <md-field>
         <md-input-item
@@ -382,11 +383,9 @@ export default {
           status,
           result
         ) {
-          // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
           Toast.hide();
           // console.log(status, result)
           if (status === "complete") {
-            // console.log('绘制驾车路线完成')
             that.panelListShow = true;
             // 存第一条轨迹的路程
             if (result.plans) {
@@ -540,6 +539,9 @@ export default {
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #f1efef;
+      font-size: 28px;
+      color: #6264e2;
+      font-weight: 600;
       .sure-btn {
         width: 100px;
         height: 50px;
@@ -550,9 +552,6 @@ export default {
         background: #6264e2;
       }
       .up-svg {
-        // position: absolute;
-        // top: 0;
-        // left: 50%;
         margin-left: -65px;
         font-size: 40px;
       }
