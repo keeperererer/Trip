@@ -55,6 +55,10 @@
       .addButton:hover {
         color: #2196f3;
       }
+      .edit,
+      .del {
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -326,145 +330,151 @@
             }
           },
         })
-        window.onload = function () {
-          // 弹出修改框
-          $('.edit').click(function () {
-            $('.pop').css('visibility', 'visible').fadeIn(200)
-          })
-          // 取消修改
-          $('.quxiao').click(function () {
-            $('.pop').css('visibility', 'hidden').fadeOut(200)
-          })
-          // 数据更新
-          $('.gengxin').click(function () {
-            // console.log('更新')
-            let userId1 = $('.userId').val()
-            let allWalk1 = $('.allWalk').val()
-            let allRun1 = $('.allRun').val()
-            let allCycle1 = $('.allCycle').val()
-            let allDrive1 = $('.allDrive').val()
-            let allBus1 = $('.allBus').val()
-            let allTaxi1 = $('.allTaxi').val()
-            let data = {
-              userId: userId1,
-              allWalk: allWalk1,
-              allRun: allRun1,
-              allCycle: allCycle1,
-              allDrive: allDrive1,
-              allBus: allBus1,
-              allTaxi: allTaxi1,
-            }
-            // console.log(data)
 
-            $.ajax({
-              type: 'post',
-              url: 'http://121.36.9.77:3000/back/updateTotalData',
-              data: data,
-              cache: true,
-              async: true,
-              success: function (data) {
-                if (data.code == 400) {
-                  $.ajax({
-                    url: 'http://121.36.9.77:3000/back/totalData',
-                    type: 'GET',
-                    success: function (data) {
-                      window.location.reload()
-                    },
-                  })
-                  $('.pop').css('visibility', 'hidden').fadeOut(200)
-                } else {
-                  alert(data.message)
-                }
-              },
-            })
-          })
-          // 删除数据
-          $('table').on('click', '.del', function (e) {
-            var arr = []
-            $(this)
-              .parent()
-              .siblings()
-              .map(function (el) {
-                arr.push($(this)[0].innerText)
-              })
-            // console.log($(this).parent().attr('id'))
-            // console.log(arr)
-            let delUserId = arr[1]
-            let delData = {
-              userId: delUserId,
-            }
+        // 弹出修改框
+        $(document).on('click', '.edit', function () {
+          // $('.edit').click(function () {
+          $('.pop').css('visibility', 'visible').fadeIn(200)
+        })
+        // 取消修改
+        $(document).on('click', '.quxiao', function () {
+          // $('.quxiao').click(function () {
+          $('.pop').css('visibility', 'hidden').fadeOut(200)
+        })
+        // 数据更新
+        $(document).on('click', '.gengxin', function () {
+          // $('.gengxin').click(function () {
+          // console.log('更新')
+          let userId1 = $('.userId').val()
+          let allWalk1 = $('.allWalk').val()
+          let allRun1 = $('.allRun').val()
+          let allCycle1 = $('.allCycle').val()
+          let allDrive1 = $('.allDrive').val()
+          let allBus1 = $('.allBus').val()
+          let allTaxi1 = $('.allTaxi').val()
+          let data = {
+            userId: userId1,
+            allWalk: allWalk1,
+            allRun: allRun1,
+            allCycle: allCycle1,
+            allDrive: allDrive1,
+            allBus: allBus1,
+            allTaxi: allTaxi1,
+          }
+          // console.log(data)
 
-            console.log(delData)
-            $.ajax({
-              type: 'post',
-              url: 'http://121.36.9.77:3000/back/deleteTotalData',
-              data: delData,
-              cache: true,
-              async: true,
-              success: function (data) {
-                if (data.code == 400) {
-                  $.ajax({
-                    url: 'http://121.36.9.77:3000/back/totalData',
-                    type: 'GET',
-                    success: function (data) {
-                      window.location.reload()
-                    },
-                  })
-                } else {
-                  alert(data.message)
-                }
-              },
+          $.ajax({
+            type: 'post',
+            url: 'http://121.36.9.77:3000/back/updateTotalData',
+            data: data,
+            cache: true,
+            async: true,
+            success: function (data) {
+              if (data.code == 400) {
+                $.ajax({
+                  url: 'http://121.36.9.77:3000/back/totalData',
+                  type: 'GET',
+                  success: function (data) {
+                    window.location.reload()
+                  },
+                })
+                $('.pop').css('visibility', 'hidden').fadeOut(200)
+              } else {
+                alert(data.message)
+              }
+            },
+          })
+        })
+        // 删除数据
+        $(document).on('click', '.del', function (e) {
+          // $('table').on('click', '.del', function (e) {
+          var arr = []
+          $(this)
+            .parent()
+            .siblings()
+            .map(function (el) {
+              arr.push($(this)[0].innerText)
             })
+          // console.log($(this).parent().attr('id'))
+          // console.log(arr)
+          let delUserId = arr[1]
+          let delData = {
+            userId: delUserId,
+          }
+
+          console.log(delData)
+          $.ajax({
+            type: 'post',
+            url: 'http://121.36.9.77:3000/back/deleteTotalData',
+            data: delData,
+            cache: true,
+            async: true,
+            success: function (data) {
+              if (data.code == 400) {
+                $.ajax({
+                  url: 'http://121.36.9.77:3000/back/totalData',
+                  type: 'GET',
+                  success: function (data) {
+                    window.location.reload()
+                  },
+                })
+              } else {
+                alert(data.message)
+              }
+            },
           })
-          // 添加数据
-          $('.addButton').click(function () {
-            $('.addUserInfo').css('display', 'block').fadeIn(200)
+        })
+        // 添加数据
+        $(document).on('click', '.addButton', function () {
+          // $('.addButton').click(function () {
+          $('.addUserInfo').css('display', 'block').fadeIn(200)
+        })
+        // 取消添加
+        $(document).on('click', '.cancel', function () {
+          // $('.cancel').click(function () {
+          $('.addUserInfo').css('display', 'block').fadeOut(200)
+        })
+        // 数据更新
+        $(document).on('click', '.add', function () {
+          // $('.add').click(function () {
+          let userId = $('.addUserId').val()
+          let allWalk = $('.addAllWalk').val()
+          let allRun = $('.addAllRun').val()
+          let allCycle = $('.addAllCycle').val()
+          let allDrive = $('.addAllDrive').val()
+          let allBus = $('.addAllBus').val()
+          let allTaxi = $('.addAllTaxi').val()
+          let data = {
+            userId: userId,
+            allWalk: allWalk,
+            allRun: allRun,
+            allCycle: allCycle,
+            allDrive: allDrive,
+            allBus: allBus,
+            allTaxi: allTaxi,
+          }
+          $.ajax({
+            type: 'post',
+            url: 'http://121.36.9.77:3000/back/addTotalData',
+            data: data,
+            cache: true,
+            async: true,
+            success: function (data) {
+              if (data.code == 400) {
+                $.ajax({
+                  url: 'http://121.36.9.77:3000/back/totalData',
+                  type: 'GET',
+                  success: function (data) {
+                    window.location.reload()
+                  },
+                })
+                $('.addUserInfo').css('display', 'block').fadeOut(200)
+              } else {
+                alert(data.message)
+              }
+            },
           })
-          // 取消添加
-          $('.cancel').click(function () {
-            $('.addUserInfo').css('display', 'block').fadeOut(200)
-          })
-          // 数据更新
-          $('.add').click(function () {
-            let userId = $('.addUserId').val()
-            let allWalk = $('.addAllWalk').val()
-            let allRun = $('.addAllRun').val()
-            let allCycle = $('.addAllCycle').val()
-            let allDrive = $('.addAllDrive').val()
-            let allBus = $('.addAllBus').val()
-            let allTaxi = $('.addAllTaxi').val()
-            let data = {
-              userId: userId,
-              allWalk: allWalk,
-              allRun: allRun,
-              allCycle: allCycle,
-              allDrive: allDrive,
-              allBus: allBus,
-              allTaxi: allTaxi,
-            }
-            $.ajax({
-              type: 'post',
-              url: 'http://121.36.9.77:3000/back/addTotalData',
-              data: data,
-              cache: true,
-              async: true,
-              success: function (data) {
-                if (data.code == 400) {
-                  $.ajax({
-                    url: 'http://121.36.9.77:3000/back/totalData',
-                    type: 'GET',
-                    success: function (data) {
-                      window.location.reload()
-                    },
-                  })
-                  $('.addUserInfo').css('display', 'block').fadeOut(200)
-                } else {
-                  alert(data.message)
-                }
-              },
-            })
-          })
-        }
+        })
       })
     </script>
   </body>

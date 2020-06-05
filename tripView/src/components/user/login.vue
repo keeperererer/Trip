@@ -75,7 +75,7 @@ export default {
       } else if (this.user.name.trim().length > 5) {
         Toast.info(`昵称长度不超过五个符号`);
       } else if (this.user.phone.trim().length < 11) {
-        Toast.info(`请求输入正确长度的手机号`);
+        Toast.info(`请输入正确长度的手机号`);
       } else {
         this.loginAjax();
       }

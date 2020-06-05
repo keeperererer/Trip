@@ -17,7 +17,7 @@ var pool = mysql.createPool({
   timezone: '08:00',
 })
 router.get('/regNum', function (req, res, next) {
-  pool.query(`SELECT * FROM user`, function (err, results, fields) {
+  pool.query(`SELECT * FROM user_info`, function (err, results, fields) {
     if (err) {
       data.code = 500
       data.msg = err
